@@ -72,7 +72,7 @@ describe("mirror-console", function () {
                 mirrorConsole.destroy();
                 var actual = sandbox.firstChild.nodeName;
                 var expected = div.nodeName;
-                assert(actual === expected);
+                assert(sandbox.firstChild === div);
             });
             it("should destroy originalElement", function () {
                 mirrorConsole.destroy();
