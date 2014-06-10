@@ -13,7 +13,7 @@ npm install codemirror-console
 ## Usage
 
 ``` js
-var MirrorConsole = require("./lib/mirror-console");
+var MirrorConsole = require("mirror-console");
 var content = document.querySelector(".content");
 var editor = new MirrorConsole();
 editor.setText(content.textContent);
