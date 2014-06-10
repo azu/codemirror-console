@@ -1,6 +1,7 @@
 {
   "name": "codemirror-console",
-  "description": "",
+  "description": "Add execute the code function to CodeMirror.",
+ "keywords": ["JavaScript", "CodeMirror", "browserify"],
   "version": "0.0.3",
   "homepage": "https://github.com/azu/codemirror-console/",
   "repository": {
