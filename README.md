@@ -12,6 +12,8 @@ npm install codemirror-console
 
 ## Usage
 
+open index.html
+
 ``` js
 var MirrorConsole = require("mirror-console");
 var content = document.querySelector(".content");
