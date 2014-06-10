@@ -1,13 +1,15 @@
 {
   "name": "codemirror-console",
   "description": "",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/azu/codemirror-console/",
   "repository": {
     "type": "git",
     "url": "https://github.com/azu/codemirror-console.git"
   },
-  "files":["lib/mirror-console.js"],
+  "files": [
+    "lib/mirror-console.js"
+  ],
   "main": "mirror-console.js",
   "scripts": {
     "build": "browserify index.js -o app.js",
