@@ -15,7 +15,7 @@
   "files": [
     "lib/mirror-console.js"
   ],
-  "main": "mirror-console.js",
+  "main": "lib/mirror-console.js",
   "scripts": {
     "build": "browserify index.js -o app.js",
     "dest": "browserify -s MirrorConsole -e lib/mirror-console.js -o dest/mirror-console.js",
