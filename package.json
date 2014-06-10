@@ -1,0 +1,35 @@
+{
+    "name": "codemirror-console",
+    "description": "",
+    "version": "0.0.1",
+    "homepage": "https://github.com/azu/codemirror-console/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/azu/codemirror-console.git"
+    },
+    "main": "mirror-console.js",
+    "scripts": {
+        "build": "browserify index.js -o app.js",
+        "dest": "browserify -s MirrorConsole -e lib/mirror-console.js -o dest/mirror-console.js",
+        "watch": "watchify index.js -o app.js -d",
+        "test": "testem ci"
+    },
+    "directories": {
+        "test": "test/"
+    },
+    "author": "azu",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/azu/codemirror-console/issues"
+    },
+    "dependencies": {
+        "codemirror": "^4.2.0"
+    },
+    "devDependencies": {
+        "browserify": "^4.1.9",
+        "espowerify": "^0.7.1",
+        "mocha": "^1.20.1",
+        "power-assert": "^0.7.2",
+        "testem": "^0.6.16"
+    }
+}
