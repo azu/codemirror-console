@@ -1,4 +1,4 @@
-# codemirror-console
+# codemirror-console [![Build Status](https://travis-ci.org/azu/codemirror-console.svg)](https://travis-ci.org/azu/codemirror-console)
 
 This library add `Console` to [CodeMirror](http://codemirror.net/ "CodeMirror").
 
