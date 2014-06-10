@@ -7,6 +7,7 @@
     "type": "git",
     "url": "https://github.com/azu/codemirror-console.git"
   },
+  "files":["lib/mirror-console.js"],
   "main": "mirror-console.js",
   "scripts": {
     "build": "browserify index.js -o app.js",
