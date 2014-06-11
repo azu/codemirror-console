@@ -1,5 +1,5 @@
 .CodeMirror.cm-s-default {
-  border: #000 solid 1px;
+  border-bottom: #000 solid 1px;
 }
 
 .CodeMirror {
@@ -8,6 +8,11 @@
 
 .mirror-console-command {
   margin-left: 15px;
+}
+
+.mirror-console-wrapper {
+  background-color: #f7f7f7;
+  outline: #000000 solid 1px;
 }
 
 .mirror-console-button {

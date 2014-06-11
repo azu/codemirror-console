@@ -10,6 +10,7 @@ function intendMirrorConsole(element, defalutText) {
     var codeMirror = mirror.editor;
     codeMirror.setOption("lineNumbers", true);
     mirror.setText(defalutText || "");
+    mirror.textareaHolder.className = "mirror-console-wrapper"
     var node = getDOMFromTemplate(require("./mirror-console-component.hbs")());
     var logArea = node.querySelector(".mirror-console-log");
     var consoleMock = {
@@ -51,7 +52,7 @@ function intendMirrorConsole(element, defalutText) {
     });
     node.querySelector("#mirror-console-exit-button").addEventListener("click", function clearLog() {
         mirror.destroy();
-        attachToElement(element);
+        attachToElement(element, defalutText);
     });
 }
 function attachToElement(element, defalutText) {
