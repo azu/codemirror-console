@@ -1,5 +1,7 @@
 "use strict";
 var MirrorConsole = require("codemirror-console");
+var merge = require("lodash.merge");
+var userContext = {};
 function getDOMFromTemplate(template) {
     var div = document.createElement("div");
     div.innerHTML = template;
@@ -20,6 +22,7 @@ function intendMirrorConsole(element, defalutText) {
         div.appendChild(document.createTextNode(args.join(",")));
         logArea.appendChild(div);
     }
+
     var consoleMock = {
         log: function () {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-normal");
@@ -34,14 +37,15 @@ function intendMirrorConsole(element, defalutText) {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-error");
         }
     }
-    consoleMock.info = consoleMock.log.bind(consoleMock);
     mirror.swapWithElement(element);
     mirror.textareaHolder.appendChild(node);
 
     runCode();
 
     function runCode() {
-        mirror.runInContext({ console: consoleMock }, function (error) {
+        var context = { console: consoleMock };
+        var runContext = merge(context, userContext);
+        mirror.runInContext(runContext, function (error) {
             if (error) {
                 consoleMock.error(error);
             }
@@ -76,3 +80,6 @@ function attachToElement(element, defalutText) {
     }
 }
 module.exports = attachToElement;
+module.exports.setUserContext = function (context) {
+    userContext = context;
+}
