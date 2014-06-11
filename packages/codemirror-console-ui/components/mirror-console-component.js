@@ -1,7 +1,6 @@
 "use strict";
 var MirrorConsole = require("codemirror-console");
 function getDOMFromTemplate(template) {
-    console.log(template);
     var div = document.createElement("div");
     div.innerHTML = template;
     return div;
