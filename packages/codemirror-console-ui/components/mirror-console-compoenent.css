@@ -30,7 +30,8 @@
 
 /* console */
 .mirror-console-log-row {
-  border-left: solid 10px #999; }
+  border-left: solid 10px #999;
+  line-height: 1.5; }
 
 .mirror-console-log-normal:before {
   content: "▶";
