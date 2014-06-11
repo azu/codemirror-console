@@ -1,7 +1,7 @@
 {
   "name": "codemirror-console-ui",
   "description": "codemirror-console ui components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/azu/codemirror-console-ui/",
   "repository": {
     "type": "git",
@@ -11,8 +11,8 @@
   "scripts": {
     "test": "mocha test/*.js"
   },
-  "template":"components/*.hbs",
-  "style" : "components/*.css",
+  "template": "components/*.hbs",
+  "style": "components/*.css",
   "directories": {
     "test": "test/"
   },
