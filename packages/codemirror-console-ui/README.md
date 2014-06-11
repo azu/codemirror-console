@@ -2,6 +2,8 @@
 
 UI Components of [codemirror-console](https://github.com/azu/codemirror-console "codemirror-console").
 
+![img](http://monosnap.com/image/jeIGR8EHA2o0CaK0wfI4R3k7tuk4sN.png)
+
 ## Installation
 
 ``` sh
@@ -12,7 +14,11 @@ npm install codemirror-console-ui
 
 See [reusable components - substack/browserify-handbook](https://github.com/substack/browserify-handbook#reusable-components " reusable components")
 
-Or Use [rotundasoftware/parcelify](https://github.com/rotundasoftware/parcelify "rotundasoftware/parcelify").
+### Known problem
+
+How to use with [rotundasoftware/parcelify](https://github.com/rotundasoftware/parcelify "rotundasoftware/parcelify")?
+
+I want to use this with parcelify.
 
 ## Contributing
 
