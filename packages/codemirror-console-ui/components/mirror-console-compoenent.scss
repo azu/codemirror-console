@@ -33,9 +33,19 @@
 /* console */
 .mirror-console-log-row {
   border-left: solid 10px #999;
+}
+
+.mirror-console-log-normal {
   &:before {
     content: "▶";
     color: #ddd;
     margin-left: -2px; // TODO : more better?
+  }
+}
+
+.mirror-console-log-error {
+  &:before {
+    content: "✘";
+    color: rgb(255, 0, 0);
   }
 }

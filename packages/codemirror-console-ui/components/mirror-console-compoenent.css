@@ -27,7 +27,12 @@
 /* console */
 .mirror-console-log-row {
   border-left: solid 10px #999; }
-  .mirror-console-log-row:before {
-    content: "▶";
-    color: #ddd;
-    margin-left: -2px; }
+
+.mirror-console-log-normal:before {
+  content: "▶";
+  color: #ddd;
+  margin-left: -2px; }
+
+.mirror-console-log-error:before {
+  content: "✘";
+  color: red; }
