@@ -1,3 +1,41 @@
 .CodeMirror.cm-s-default {
-  border: cornsilk solid 1px;
+  border: #000 solid 1px;
+}
+
+.CodeMirror {
+  font-size: 16px;
+}
+
+.mirror-console-command {
+  margin-left: 15px;
+}
+
+.mirror-console-button {
+  font-size: 1.1em;
+  display: inline-block;
+  margin: 0.75em 0.25em;
+  font-size: 0.9em;
+  border: 0px none;
+  border-radius: 3px;
+  padding: 0.25em 1em;
+  color: rgb(255, 255, 255);
+  &.mirror-console-run {
+    background-color: rgb(92, 184, 92);
+  }
+  &.mirror-console-clear {
+    background-color: rgb(153, 153, 153);
+  }
+  &.mirror-console-exit {
+    background-color: rgb(255, 0, 0);
+  }
+}
+
+/* console */
+.mirror-console-log-row {
+  border-left: solid 10px #999;
+  &:before {
+    content: "▶";
+    color: #ddd;
+    margin-left: -2px; // TODO : more better?
+  }
 }

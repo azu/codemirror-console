@@ -8,6 +8,8 @@ function createConsole() {
 }
 module.exports = function (element) {
     var mirror = new MirrorConsole;
+    var codeMirror = mirror.editor;
+    codeMirror.setOption("lineNumbers", true);
     mirror.setText(element.textContent);
     var node = createConsole();
     var consoleMock = {
@@ -33,5 +35,8 @@ module.exports = function (element) {
         var range = document.createRange();
         range.selectNodeContents(node.querySelector(".mirror-console-log"));
         range.deleteContents();
+    });
+    node.querySelector("#mirror-console-exit-button").addEventListener("click", function clearLog() {
+        mirror.destroy();
     });
 }
