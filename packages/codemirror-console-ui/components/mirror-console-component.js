@@ -13,22 +13,28 @@ function intendMirrorConsole(element, defalutText) {
     mirror.textareaHolder.className = "mirror-console-wrapper"
     var node = getDOMFromTemplate(require("./mirror-console-component.hbs")());
     var logArea = node.querySelector(".mirror-console-log");
+
+    function printConsole(args, className) {
+        var div = document.createElement("div");
+        div.className = className;
+        div.appendChild(document.createTextNode(args.join(",")));
+        logArea.appendChild(div);
+    }
     var consoleMock = {
         log: function () {
-            var args = Array.prototype.slice.call(arguments);
-            var div = document.createElement("div");
-            div.className = "mirror-console-log-row mirror-console-log-normal";
-            div.appendChild(document.createTextNode(args.join(",")));
-            logArea.appendChild(div);
+            printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-normal");
+        },
+        info: function () {
+            printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-info");
+        },
+        warn: function () {
+            printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-warn");
         },
         error: function () {
-            var args = Array.prototype.slice.call(arguments);
-            var div = document.createElement("div");
-            div.className = "mirror-console-log-row mirror-console-log-error";
-            div.appendChild(document.createTextNode(args.join(",")));
-            logArea.appendChild(div);
+            printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-error");
         }
     }
+    consoleMock.info = consoleMock.log.bind(consoleMock);
     mirror.swapWithElement(element);
     mirror.textareaHolder.appendChild(node);
 

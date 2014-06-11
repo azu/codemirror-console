@@ -41,17 +41,20 @@
   line-height: 1.5;
 }
 
-.mirror-console-log-normal {
-  &:before {
-    content: "▶";
-    color: #ddd;
-    margin-left: -2px; // TODO : more better?
-  }
+.mirror-console-log-normal::before {
+  content: "▶";
+  color: #ddd;
+  margin-left: -2px; // TODO : more better?
 }
 
-.mirror-console-log-error {
-  &:before {
-    content: "✘";
-    color: rgb(255, 0, 0);
-  }
+.mirror-console-log-error::before {
+  content: "✘";
+}
+
+.mirror-console-log-info::before {
+  content: "ℹ";
+}
+
+.mirror-console-log-warn::before {
+  content: "⚠";
 }
