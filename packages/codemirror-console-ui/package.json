@@ -9,7 +9,7 @@
   },
   "main": "components/mirror-console-component.js",
   "scripts": {
-    "watch": "watchify index.js -t hbsfy -o app/bundle.js -d",
+    "watch": "watchify index.js -o app/bundle.js -d",
     "test": "mocha test/*.js"
   },
   "template": "components/*.hbs",
