@@ -2,15 +2,16 @@
 var MirrorConsole = require("codemirror-console");
 function getDOMFromTemplate(template) {
     var div = document.createElement("div");
-    div.innerHTML = template();
+    div.innerHTML = template;
     return div;
 }
 function intendMirrorConsole(element) {
-    var mirror = new MirrorConsole;
+    var mirror = new MirrorConsole();
     var codeMirror = mirror.editor;
     codeMirror.setOption("lineNumbers", true);
     mirror.setText(element.textContent);
-    var node = getDOMFromTemplate(require("./mirror-console-component.hbs"));
+
+    var node = getDOMFromTemplate(require("./mirror-console-component.hbs")());
     var logArea = node.querySelector(".mirror-console-log");
     var consoleMock = {
         log: function () {
@@ -30,7 +31,9 @@ function intendMirrorConsole(element) {
     }
     mirror.swapWithElement(element);
     mirror.textareaHolder.appendChild(node);
+
     runCode();
+
     function runCode() {
         mirror.runInContext({ console: consoleMock }, function (error) {
             if (error) {
@@ -49,12 +52,12 @@ function intendMirrorConsole(element) {
     });
     node.querySelector("#mirror-console-exit-button").addEventListener("click", function clearLog() {
         mirror.destroy();
-        firstTouch(element);
+        attachToElement(element);
     });
 }
-function firstTouch(element) {
+function attachToElement(element) {
     var parentNode = element.parentNode;
-    var node = getDOMFromTemplate(require("./mirror-console-inject-div.hbs"));
+    var node = getDOMFromTemplate(require("./mirror-console-inject-button.hbs")());
     node.querySelector("#mirror-console-run-button").addEventListener("click", function editAndRun() {
         intendMirrorConsole(element);
         parentNode.removeChild(node);
@@ -65,6 +68,4 @@ function firstTouch(element) {
         parentNode.insertBefore(node, element.nextSibling);
     }
 }
-module.exports = function (element) {
-    firstTouch(element);
-}
+module.exports = attachToElement;

@@ -13,6 +13,9 @@
   },
   "template": "components/*.hbs",
   "style": "components/*.css",
+  "browserify": {
+    "transform": [ "hbsfy" ]
+  },
   "directories": {
     "test": "test/"
   },
