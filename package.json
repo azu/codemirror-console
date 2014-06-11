@@ -31,7 +31,8 @@
     "url": "https://github.com/azu/codemirror-console/issues"
   },
   "dependencies": {
-    "codemirror": "^4.2.0"
+    "codemirror": "^4.2.0",
+    "context-eval": "0.0.2"
   },
   "devDependencies": {
     "browserify": "^4.1.9",

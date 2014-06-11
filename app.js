@@ -22,7 +22,7 @@ document.getElementById("eval").addEventListener("click", function () {
             document.getElementById("output").appendChild(line(arg));
         }
     }
-    editor.runInContext({ console: consoleMock }, function (error, result) {
+    editor.runInContext(function (error, result) {
         if (error) {
             console.error(error);
         }
@@ -182,7 +182,7 @@ Script.prototype.runInThisContext = function () {
 
 Script.prototype.runInNewContext = function (context) {
     var ctx = Script.createContext(context);
-    var res = this.runInContext(ctx);
+    var res = this.runInContext();
 
     forEach(Object_keys(ctx), function (key) {
         context[key] = ctx[key];

@@ -81,7 +81,18 @@ describe("mirror-console", function () {
         });
     });
     describe("#runInContext", function () {
+        var div;
+        beforeEach(function () {
+            div = document.createElement("div");
+            sandbox.appendChild(div);
+        });
+        afterEach(function () {
+            mirrorConsole.destroy();
+        })
         context("when text is empty", function () {
+            beforeEach(function () {
+                mirrorConsole.swapWithElement(div);
+            });
             it("should result null", function (done) {
                 mirrorConsole.runInContext({}, function (error, result) {
                     assert(error == null);
@@ -91,6 +102,9 @@ describe("mirror-console", function () {
             });
         });
         context("when error", function () {
+            beforeEach(function () {
+                mirrorConsole.swapWithElement(div);
+            });
             it("should use context value", function (done) {
                 mirrorConsole.setText("throw new Error('in error');");
                 mirrorConsole.runInContext({}, function (error, result) {
@@ -98,29 +112,41 @@ describe("mirror-console", function () {
                     done();
                 });
             });
-            it("should passing error at first argument", function (done) {
-                mirrorConsole.setText("log('test')");
-                mirrorConsole.runInContext({log: function (text) {
-                    assert(text === "test");
-                }}, function (error, result) {
-                    done(error);
-                });
-            });
         });
         context("when has context", function () {
             it("should use context value", function (done) {
+                var context = {
+                    a: "outer"
+                };
+                mirrorConsole.swapWithElement(div);
                 mirrorConsole.setText("a;");
-                mirrorConsole.runInContext({a: "outer"}, function (error, result) {
+                mirrorConsole.runInContext(context, function (error, result) {
                     assert(result == "outer");
                     done();
                 });
             });
             it("should call context function", function (done) {
+                var context = {
+                    log: function (text) {
+                        assert(text === "test");
+                    }
+                }
+                mirrorConsole.swapWithElement(div);
                 mirrorConsole.setText("log('test')");
-                mirrorConsole.runInContext({log: function (text) {
-                    assert(text === "test");
-                }}, function (error, result) {
+                mirrorConsole.runInContext(context, function (error, result) {
                     done(error);
+                });
+            });
+            it("should handle async call", function (done) {
+                var context = {
+                    log: function (text) {
+                        assert(text === "async");
+                        done();
+                    }
+                }
+                mirrorConsole.swapWithElement(div);
+                mirrorConsole.setText("setTimeout(function(){ log('async'); }, 0);");
+                mirrorConsole.runInContext(context, function (error, result) {
                 });
             });
         });

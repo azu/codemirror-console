@@ -29,8 +29,12 @@ MirrorConsole.prototype.destroy = function (element) {
     }
     this.textareaHolder.parentNode.replaceChild(this.originalElemenet, this.textareaHolder);
     this.originalElemenet = null;
+    this.evalContext.destroy();
 }
 MirrorConsole.prototype.runInContext = function (context, callback) {
+    if (this.originalElemenet == null) {
+        throw new Error("Haven't `originalElemenet` : You have to call #swapWithElement before call this");
+    }
     var jsCode = this.editor.getValue();
     var res;
     try {
@@ -152,7 +156,7 @@ Script.prototype.runInThisContext = function () {
 
 Script.prototype.runInNewContext = function (context) {
     var ctx = Script.createContext(context);
-    var res = this.runInContext(ctx);
+    var res = this.runInContext();
 
     forEach(Object_keys(ctx), function (key) {
         context[key] = ctx[key];
