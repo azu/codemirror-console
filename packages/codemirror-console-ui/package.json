@@ -7,10 +7,12 @@
     "type": "git",
     "url": "https://github.com/azu/codemirror-console-ui.git"
   },
-  "main": "index.js",
+  "main": "components/mirror-console-component.js",
   "scripts": {
     "test": "mocha test/*.js"
   },
+  "template":"components/*.hbs",
+  "style" : "components/*.css",
   "directories": {
     "test": "test/"
   },
