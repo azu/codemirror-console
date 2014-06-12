@@ -68,15 +68,16 @@ function intendMirrorConsole(element, defalutText) {
 function attachToElement(element, defalutText) {
     var parentNode = element.parentNode;
     var template = require("./mirror-console-inject-button.hbs");
-    var node = getDOMFromTemplate(template());
-    node.querySelector("#mirror-console-run-button").addEventListener("click", function editAndRun() {
+    var divNode = getDOMFromTemplate(template());
+    divNode.className = "mirror-console-attach-button-wrapper"
+    divNode.querySelector("#mirror-console-run-button").addEventListener("click", function editAndRun() {
         intendMirrorConsole(element, defalutText);
-        parentNode.removeChild(node);
+        parentNode.removeChild(divNode);
     });
     if (element.nextSibling === null) {
-        parentNode.appendChild(node);
+        parentNode.appendChild(divNode);
     } else {
-        parentNode.insertBefore(node, element.nextSibling);
+        parentNode.insertBefore(divNode, element.nextSibling);
     }
 }
 module.exports = attachToElement;

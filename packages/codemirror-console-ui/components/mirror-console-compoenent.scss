@@ -48,11 +48,12 @@
 }
 
 .mirror-console-log-error::before {
+  margin: 0 2px;
   content: "✘";
 }
 
 .mirror-console-log-info::before {
-  content: "ℹ";
+  content: "▶";
 }
 
 .mirror-console-log-warn::before {
