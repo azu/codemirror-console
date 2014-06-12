@@ -64,6 +64,8 @@ function intendMirrorConsole(element, defalutText) {
         mirror.destroy();
         attachToElement(element, defalutText);
     });
+
+    return mirror;
 }
 function attachToElement(element, defalutText) {
     var parentNode = element.parentNode;
@@ -71,7 +73,8 @@ function attachToElement(element, defalutText) {
     var divNode = getDOMFromTemplate(template());
     divNode.className = "mirror-console-attach-button-wrapper"
     divNode.querySelector("#mirror-console-run-button").addEventListener("click", function editAndRun() {
-        intendMirrorConsole(element, defalutText);
+        var mirror = intendMirrorConsole(element, defalutText);
+        mirror.textareaHolder.scrollIntoView(true);
         parentNode.removeChild(divNode);
     });
     if (element.nextSibling === null) {

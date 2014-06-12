@@ -5,13 +5,147 @@
     <title></title>
     <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="components/mirror-console-compoenent.css">
+    <style>
+        body {font-size : 16px;}
+    </style>
 </head>
 <body>
-<div class="content"><pre><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span
-        class="mi">1</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span
-            class="s2">&quot;xxx&quot;</span><span class="p">);</span>
-</pre>
+
+<div class="sect3">
+<h4 id="_deferred_top_on_promise">4.4.3. Deferred top on Promise</h4>
+<div class="paragraph">
+<p>Promiseの上にDeferredを実装した例です。</p>
+</div>
+<div id="deferred.js" class="listingblock">
+<div class="title">deferred.js</div>
+<div class="content">
+<pre class="CodeRay"><code class="javascript language-javascript"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+<span class="keyword">function</span> <span class="function">Deferred</span>() {
+    <span class="local-variable">this</span>.promise = <span class="keyword">new</span> Promise(<span class="keyword">function</span> (resolve, reject) {
+        <span class="local-variable">this</span>._resolve = resolve;
+        <span class="local-variable">this</span>._reject = reject;
+    }.bind(<span class="local-variable">this</span>));
+}
+Deferred.prototype.<span class="function">resolve</span> = <span class="keyword">function</span> (value) {
+    <span class="local-variable">this</span>._resolve.call(<span class="local-variable">this</span>.promise, value);
+};
+Deferred.prototype.<span class="function">reject</span> = <span class="keyword">function</span> (reason) {
+    <span class="local-variable">this</span>._reject.call(<span class="local-variable">this</span>.promise, reason);
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以前Promiseを使って実装した<a href="#xhr-promise.js"><code>getURL</code></a>をこのDeferredで実装しなおしてみます。</p>
+</div>
+<div id="xhr-deferred.js" class="listingblock executable">
+<div class="title">xhr-deferred.js</div>
+<div class="content">
+<pre class="CodeRay"><code class="javascript language-javascript"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+<span class="keyword">function</span> <span class="function">Deferred</span>() {
+    <span class="local-variable">this</span>.promise = <span class="keyword">new</span> Promise(<span class="keyword">function</span> (resolve, reject) {
+        <span class="local-variable">this</span>._resolve = resolve;
+        <span class="local-variable">this</span>._reject = reject;
+    }.bind(<span class="local-variable">this</span>));
+}
+Deferred.prototype.<span class="function">resolve</span> = <span class="keyword">function</span> (value) {
+    <span class="local-variable">this</span>._resolve.call(<span class="local-variable">this</span>.promise, value);
+};
+Deferred.prototype.<span class="function">reject</span> = <span class="keyword">function</span> (reason) {
+    <span class="local-variable">this</span>._reject.call(<span class="local-variable">this</span>.promise, reason);
+};
+<span class="keyword">function</span> <span class="function">getURL</span>(URL) {
+    <span class="keyword">var</span> deferred = <span class="keyword">new</span> Deferred();
+    <span class="keyword">var</span> req = <span class="keyword">new</span> XMLHttpRequest();
+    req.open(<span class="string"><span class="delimiter">'</span><span class="content">GET</span><span class="delimiter">'</span></span>, URL, <span class="predefined-constant">true</span>);
+    req.<span class="function">onload</span> = <span class="keyword">function</span> () {
+        <span class="keyword">if</span> (req.status == <span class="integer">200</span>) {
+            deferred.resolve(req.response);
+        } <span class="keyword">else</span> {
+            deferred.reject(<span class="keyword">new</span> Error(req.statusText));
+        }
+    };
+    req.<span class="function">onerror</span> = <span class="keyword">function</span> () {
+        deferred.reject(<span class="keyword">new</span> Error(req.statusText));
+    };
+    req.send();
+    <span class="keyword">return</span> deferred.promise;
+}
+<span class="comment">// 実行例</span>
+<span class="keyword">var</span> URL = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://httpbin.org/get</span><span class="delimiter">&quot;</span></span>;
+getURL(URL).then(<span class="keyword">function</span> <span class="function">onFulfilled</span>(value){
+    console.log(value);
+}).<span class="keyword">catch</span>(console.error.bind(console));<span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+<span class="keyword">function</span> <span class="function">Deferred</span>() {
+    <span class="local-variable">this</span>.promise = <span class="keyword">new</span> Promise(<span class="keyword">function</span> (resolve, reject) {
+        <span class="local-variable">this</span>._resolve = resolve;
+        <span class="local-variable">this</span>._reject = reject;
+    }.bind(<span class="local-variable">this</span>));
+}
+Deferred.prototype.<span class="function">resolve</span> = <span class="keyword">function</span> (value) {
+    <span class="local-variable">this</span>._resolve.call(<span class="local-variable">this</span>.promise, value);
+};
+Deferred.prototype.<span class="function">reject</span> = <span class="keyword">function</span> (reason) {
+    <span class="local-variable">this</span>._reject.call(<span class="local-variable">this</span>.promise, reason);
+};
+<span class="keyword">function</span> <span class="function">getURL</span>(URL) {
+    <span class="keyword">var</span> deferred = <span class="keyword">new</span> Deferred();
+    <span class="keyword">var</span> req = <span class="keyword">new</span> XMLHttpRequest();
+    req.open(<span class="string"><span class="delimiter">'</span><span class="content">GET</span><span class="delimiter">'</span></span>, URL, <span class="predefined-constant">true</span>);
+    req.<span class="function">onload</span> = <span class="keyword">function</span> () {
+        <span class="keyword">if</span> (req.status == <span class="integer">200</span>) {
+            deferred.resolve(req.response);
+        } <span class="keyword">else</span> {
+            deferred.reject(<span class="keyword">new</span> Error(req.statusText));
+        }
+    };
+    req.<span class="function">onerror</span> = <span class="keyword">function</span> () {
+        deferred.reject(<span class="keyword">new</span> Error(req.statusText));
+    };
+    req.send();
+    <span class="keyword">return</span> deferred.promise;
+}
+<span class="comment">// 実行例</span>
+<span class="keyword">var</span> URL = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://httpbin.org/get</span><span class="delimiter">&quot;</span></span>;
+getURL(URL).then(<span class="keyword">function</span> <span class="function">onFulfilled</span>(value){
+    console.log(value);
+}).<span class="keyword">catch</span>(console.error.bind(console));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Promiseの状態を操作する特権的なメソッドというのは、
+promiseオブジェクトの状態をresolve、rejectすることができるメソッドで、
+通常のPromiseだとコンストラクタで渡した関数の中でしか操作する事が出来ません。</p>
+</div>
+<div class="paragraph">
+<p>Promiseで実装したものと見比べていきたいと思います。</p>
+</div>
+<div class="listingblock executable">
+<div class="title">xhr-promise.js</div>
+<div class="content">
+<pre class="CodeRay"><code class="javascript language-javascript"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+<span class="keyword">function</span> <span class="function">getURL</span>(URL) {
+    <span class="keyword">return</span> <span class="keyword">new</span> Promise(<span class="keyword">function</span> (resolve, reject) {
+        <span class="keyword">var</span> req = <span class="keyword">new</span> XMLHttpRequest();
+        req.open(<span class="string"><span class="delimiter">'</span><span class="content">GET</span><span class="delimiter">'</span></span>, URL, <span class="predefined-constant">true</span>);
+        req.<span class="function">onload</span> = <span class="keyword">function</span> () {
+            <span class="keyword">if</span> (req.status == <span class="integer">200</span>) {
+                resolve(req.response);
+            } <span class="keyword">else</span> {
+                reject(<span class="keyword">new</span> Error(req.statusText));
+            }
+        };
+        req.<span class="function">onerror</span> = <span class="keyword">function</span> () {
+            reject(<span class="keyword">new</span> Error(req.statusText));
+        };
+        req.send();
+    });
+}
+<span class="comment">// 実行例</span>
+<span class="keyword">var</span> URL = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://httpbin.org/get</span><span class="delimiter">&quot;</span></span>;
+getURL(URL).then(<span class="keyword">function</span> <span class="function">onFulfilled</span>(value){
+    console.log(value);
+}).<span class="keyword">catch</span>(console.error.bind(console));</code></pre>
+</div>
 </div>
 <div id="output"></div>
 <script src="app/bundle.js"></script>
