@@ -10,7 +10,7 @@
   "main": "components/mirror-console-component.js",
   "scripts": {
     "build": "browserify -t brfs index.js -o app/bundle.js -d",
-    "watch": "watchify -t brfs index.js -o app/bundle.js -d",
+    "watch": "watchify -t brfs components/mirror-console-component.js -o lib/mirror-console-component.js --standalone MirrorConsoleUI",
     "test": "mocha test/*.js"
   },
   "template": "components/*.hbs",
@@ -38,8 +38,6 @@
   "devDependencies": {
     "brfs": "^1.2.0",
     "browserify": "^8.1.1",
-    "handlebars": "^1.3.0",
-    "hbsfy": "^1.3.2",
     "watchify": "^2.2.1"
   }
 }

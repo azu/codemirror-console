@@ -11,11 +11,6 @@ var fs = require('fs');
 
 // context
 var userContext = {};
-function getDOMFromTemplate(template) {
-    var div = document.createElement("div");
-    div.innerHTML = template;
-    return div;
-}
 function intendMirrorConsole(element, defaultsText) {
     var mirror = new MirrorConsole();
     var codeMirror = mirror.editor;

@@ -14,6 +14,12 @@ npm install codemirror-console-ui
 
 See [reusable components - substack/browserify-handbook](https://github.com/substack/browserify-handbook#reusable-components " reusable components")
 
+Please use with browserify + [brfs](https://github.com/substack/brfs "brfs") or webpack.
+
+```
+browserify -t brfs app.js
+```
+
 ## How to add Localization?
 
 If you want to add locale, then please add translated text to [components/localization.js](components/localization.js).
