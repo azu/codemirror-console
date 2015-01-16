@@ -10,14 +10,13 @@
 
 .mirror-console-wrapper {
   background-color: #f7f7f7;
-  outline: #000000 solid 1px; }
+  outline: #000 solid 1px; }
 
 .mirror-console-button {
-  font-size: 1.1em;
   display: inline-block;
   margin: 0.75em 0.25em;
   font-size: 0.9em;
-  border: 0px none;
+  border: 0 none;
   border-radius: 3px;
   padding: 0.25em 1em;
   color: white; }
@@ -47,3 +46,5 @@
 
 .mirror-console-log-warn::before {
   content: "⚠"; }
+
+/*# sourceMappingURL=mirror-console-compoenent.css.map */

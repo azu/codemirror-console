@@ -12,7 +12,7 @@ function intendMirrorConsole(element, defalutText) {
     var codeMirror = mirror.editor;
     codeMirror.setOption("lineNumbers", true);
     mirror.setText(defalutText || "");
-    mirror.textareaHolder.className = "mirror-console-wrapper"
+    mirror.textareaHolder.className = "mirror-console-wrapper";
     var node = getDOMFromTemplate(require("./mirror-console-component.hbs")());
     var logArea = node.querySelector(".mirror-console-log");
 
@@ -36,31 +36,32 @@ function intendMirrorConsole(element, defalutText) {
         error: function () {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-error");
         }
-    }
-    mirror.swapWithElement(element);
-    mirror.textareaHolder.appendChild(node);
+    };
 
-    runCode();
-
-    function runCode() {
-        var context = { console: consoleMock };
+    var runCode = function () {
+        var context = {console: consoleMock};
         var runContext = merge(context, userContext);
         mirror.runInContext(runContext, function (error) {
             if (error) {
                 consoleMock.error(error);
             }
         });
-    }
+    };
 
-    node.querySelector("#mirror-console-run-button").addEventListener("click", function runJS() {
+    mirror.swapWithElement(element);
+    mirror.textareaHolder.appendChild(node);
+    // execute js in context
+    runCode();
+
+    node.querySelector(".mirror-console-run").addEventListener("click", function runJS() {
         runCode();
     });
-    node.querySelector("#mirror-console-clear-button").addEventListener("click", function clearLog() {
+    node.querySelector(".mirror-console-clear").addEventListener("click", function clearLog() {
         var range = document.createRange();
         range.selectNodeContents(node.querySelector(".mirror-console-log"));
         range.deleteContents();
     });
-    node.querySelector("#mirror-console-exit-button").addEventListener("click", function clearLog() {
+    node.querySelector(".mirror-console-exit").addEventListener("click", function clearLog() {
         mirror.destroy();
         attachToElement(element, defalutText);
     });
@@ -71,8 +72,8 @@ function attachToElement(element, defalutText) {
     var parentNode = element.parentNode;
     var template = require("./mirror-console-inject-button.hbs");
     var divNode = getDOMFromTemplate(template());
-    divNode.className = "mirror-console-attach-button-wrapper"
-    divNode.querySelector("#mirror-console-run-button").addEventListener("click", function editAndRun() {
+    divNode.className = "mirror-console-attach-button-wrapper";
+    divNode.querySelector(".mirror-console-run").addEventListener("click", function editAndRun() {
         var mirror = intendMirrorConsole(element, defalutText);
         mirror.textareaHolder.scrollIntoView(true);
         parentNode.removeChild(divNode);
@@ -86,4 +87,4 @@ function attachToElement(element, defalutText) {
 module.exports = attachToElement;
 module.exports.setUserContext = function (context) {
     userContext = context;
-}
+};
