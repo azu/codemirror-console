@@ -61,20 +61,20 @@ function intendMirrorConsole(element, defalutText) {
         range.selectNodeContents(node.querySelector(".mirror-console-log"));
         range.deleteContents();
     });
-    node.querySelector(".mirror-console-exit").addEventListener("click", function clearLog() {
+    node.querySelector(".mirror-console-exit").addEventListener("click", function exitConsole() {
         mirror.destroy();
         attachToElement(element, defalutText);
     });
 
     return mirror;
 }
-function attachToElement(element, defalutText) {
+function attachToElement(element, defaultsText) {
     var parentNode = element.parentNode;
     var template = require("./mirror-console-inject-button.hbs");
     var divNode = getDOMFromTemplate(template());
     divNode.className = "mirror-console-attach-button-wrapper";
     divNode.querySelector(".mirror-console-run").addEventListener("click", function editAndRun() {
-        var mirror = intendMirrorConsole(element, defalutText);
+        var mirror = intendMirrorConsole(element, defaultsText);
         mirror.textareaHolder.scrollIntoView(true);
         parentNode.removeChild(divNode);
     });
