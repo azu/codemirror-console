@@ -20,9 +20,9 @@ Please use with browserify + [brfs](https://github.com/substack/brfs "brfs") or 
 browserify -t brfs app.js
 ```
 
-## How to add Localization?
+## How to custom Localization?
 
-If you want to add locale, then please add translated text to [components/localization.js](components/localization.js).
+If you want to custom locale, then please add translated text to [components/localization.js](components/localization.js).
 
 ## Contributing
 
