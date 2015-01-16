@@ -17,7 +17,7 @@
   "style": "components/*.css",
   "browserify": {
     "transform": [
-      "hbsfy"
+      "brfs"
     ]
   },
   "directories": {
