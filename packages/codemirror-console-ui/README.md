@@ -14,11 +14,9 @@ npm install codemirror-console-ui
 
 See [reusable components - substack/browserify-handbook](https://github.com/substack/browserify-handbook#reusable-components " reusable components")
 
-### Known problem
+## How to add Localization?
 
-How to use with [rotundasoftware/parcelify](https://github.com/rotundasoftware/parcelify "rotundasoftware/parcelify")?
-
-I want to use this with parcelify.
+If you want to add locale, then please add translated text to [components/localization.js](components/localization.js).
 
 ## Contributing
 

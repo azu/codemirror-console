@@ -9,8 +9,8 @@
   },
   "main": "components/mirror-console-component.js",
   "scripts": {
-    "build": "browserify index.js -o app/bundle.js -d",
-    "watch": "watchify index.js -o app/bundle.js -d",
+    "build": "browserify -t brfs index.js -o app/bundle.js -d",
+    "watch": "watchify -t brfs index.js -o app/bundle.js -d",
     "test": "mocha test/*.js"
   },
   "template": "components/*.hbs",
@@ -31,9 +31,12 @@
   "dependencies": {
     "codemirror": "^4.2.0",
     "codemirror-console": "^0.1.0",
-    "lodash.merge": "^2.4.1"
+    "in-browser-language": "^1.0.2",
+    "lodash.merge": "^2.4.1",
+    "new-element": "0.0.2"
   },
   "devDependencies": {
+    "brfs": "^1.2.0",
     "browserify": "^8.1.1",
     "handlebars": "^1.3.0",
     "hbsfy": "^1.3.2",

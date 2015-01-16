@@ -1,19 +1,29 @@
 "use strict";
 var MirrorConsole = require("codemirror-console");
 var merge = require("lodash.merge");
+// https://github.com/kchapelier/in-browser-language
+var browserLanguage = require('in-browser-language');
+var userLang = browserLanguage.pick(['en', 'ja', 'zh'], 'en');
+var localize = require("./localize");
+var localization = require("./localization");
+var newElement = require('new-element');
+var fs = require('fs');
+
+// context
 var userContext = {};
 function getDOMFromTemplate(template) {
     var div = document.createElement("div");
     div.innerHTML = template;
     return div;
 }
-function intendMirrorConsole(element, defalutText) {
+function intendMirrorConsole(element, defaultsText) {
     var mirror = new MirrorConsole();
     var codeMirror = mirror.editor;
     codeMirror.setOption("lineNumbers", true);
-    mirror.setText(defalutText || "");
+    mirror.setText(defaultsText || "");
     mirror.textareaHolder.className = "mirror-console-wrapper";
-    var node = getDOMFromTemplate(require("./mirror-console-component.hbs")());
+    var html = fs.readFileSync(__dirname + "/mirror-console-component.hbs", "utf8");
+    var node = newElement(html, localize(localization, userLang));
     var logArea = node.querySelector(".mirror-console-log");
 
     function printConsole(args, className) {
@@ -63,15 +73,15 @@ function intendMirrorConsole(element, defalutText) {
     });
     node.querySelector(".mirror-console-exit").addEventListener("click", function exitConsole() {
         mirror.destroy();
-        attachToElement(element, defalutText);
+        attachToElement(element, defaultsText);
     });
 
     return mirror;
 }
 function attachToElement(element, defaultsText) {
     var parentNode = element.parentNode;
-    var template = require("./mirror-console-inject-button.hbs");
-    var divNode = getDOMFromTemplate(template());
+    var html = fs.readFileSync(__dirname + "/mirror-console-inject-button.hbs", "utf8");
+    var divNode = newElement(html, localize(localization, userLang));
     divNode.className = "mirror-console-attach-button-wrapper";
     divNode.querySelector(".mirror-console-run").addEventListener("click", function editAndRun() {
         var mirror = intendMirrorConsole(element, defaultsText);
