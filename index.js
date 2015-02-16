@@ -21,7 +21,7 @@ document.getElementById("eval").addEventListener("click", function () {
             document.getElementById("output").appendChild(line(arg));
         }
     }
-    editor.runInContext(function (error, result) {
+    editor.runInContext({ console: consoleMock },function (error, result) {
         if (error) {
             console.error(error);
         }
