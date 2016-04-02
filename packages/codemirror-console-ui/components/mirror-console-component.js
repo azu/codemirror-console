@@ -6,7 +6,7 @@ var browserLanguage = require('in-browser-language');
 var userLang = browserLanguage.pick(['en', 'ja', 'zh'], 'en');
 var localize = require("./localize");
 var localization = require("./localization");
-var newElement = require('new-element');
+var newElement = require('./new-element');
 var fs = require('fs');
 
 // context
