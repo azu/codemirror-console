@@ -29,26 +29,34 @@ function intendMirrorConsole(element, defaultsText) {
     }
 
     var consoleMock = {
-        log: function () {
+        log: function() {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-normal");
+            console.log.apply(console, arguments);
         },
-        info: function () {
+        info: function() {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-info");
+            console.info.apply(console, arguments);
         },
-        warn: function () {
+        warn: function() {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-warn");
+            console.warn.apply(console, arguments);
         },
-        error: function () {
+        error: function() {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-error");
+            console.error.apply(console, arguments);
         }
     };
 
-    var runCode = function () {
+    var runCode = function() {
         var context = {console: consoleMock};
         var runContext = merge(context, userContext);
-        mirror.runInContext(runContext, function (error) {
+        mirror.runInContext(runContext, function(error, result) {
             if (error) {
                 consoleMock.error(error);
+                return;
+            }
+            if (result) {
+                printConsole([result], "mirror-console-log-row mirror-console-log-return");
             }
         });
     };
@@ -90,6 +98,6 @@ function attachToElement(element, defaultsText) {
     }
 }
 module.exports = attachToElement;
-module.exports.setUserContext = function (context) {
+module.exports.setUserContext = function(context) {
     userContext = context;
 };

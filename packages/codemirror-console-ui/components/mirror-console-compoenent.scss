@@ -42,19 +42,33 @@
 
 .mirror-console-log-normal::before {
   content: "▶";
-  color: #ddd;
-  margin-left: -2px; // TODO : more better?
+  margin-right: 0.5em;
 }
 
 .mirror-console-log-error::before {
-  margin: 0 2px;
   content: "✘";
+  color: #dd6964;
+  margin-right: 0.5em;
+
 }
 
 .mirror-console-log-info::before {
   content: "▶";
+  color: #8ee386;
+  margin-right: 0.5em;
+
 }
 
 .mirror-console-log-warn::before {
   content: "⚠";
+  color: #ffd080;
+  margin-right: 0.5em;
+
+}
+
+.mirror-console-log-return::before {
+  content: "◀";
+  color: #ddd;
+  margin-right: 0.5em;
+
 }
