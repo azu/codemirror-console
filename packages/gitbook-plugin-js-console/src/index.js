@@ -18,11 +18,14 @@
             if (prevNode && prevNode.nodeName === "PRE") {
                 replaceCodeWithConsole(prevNode);
             }
-            // some plugin fallback
-            // for https://github.com/azu/gitbook-plugin-include-codeblock
-            if (nextNextNode && nextNextNode.nodeName === "PRE") {
+            if (nextNode && nextNode.nodeName === "PRE") {
+                replaceCodeWithConsole(nextNode);
+            } else if (nextNextNode && nextNextNode.nodeName === "PRE") {
+                // some plugin fallback
+                // for https://github.com/azu/gitbook-plugin-include-codeblock
                 replaceCodeWithConsole(nextNextNode);
             }
+
         }
     }
 
