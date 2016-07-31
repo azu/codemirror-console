@@ -44,7 +44,16 @@ var userContext = {};
 function intendMirrorConsole(element, defaultsText) {
     var mirror = new MirrorConsole();
     var codeMirror = mirror.editor;
+    var extraKeys = {
+        "Cmd-Enter": function() {
+            runCode();
+        },
+        "Ctrl-Enter": function() {
+            runCode();
+        }
+    };
     codeMirror.setOption("lineNumbers", true);
+    codeMirror.setOption("extraKeys", extraKeys);
     mirror.setText(defaultsText || "");
     mirror.textareaHolder.className = "mirror-console-wrapper";
     var html = "<div>\n    <div class=\"mirror-console-command\">\n        <button class=\"mirror-console-button mirror-console-run\">{run_console}</button>\n        <button class=\"mirror-console-button mirror-console-clear\">{clear_console}</button>\n        <button class=\"mirror-console-button mirror-console-exit\">{exit_console}</button>\n    </div>\n    <div class=\"mirror-console-log\">\n    </div>\n</div>";
