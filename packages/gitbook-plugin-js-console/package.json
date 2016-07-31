@@ -1,0 +1,52 @@
+{
+  "name": "gitbook-plugin-js-console",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/gitbook-plugin-js-console.git"
+  },
+  "author": "azu",
+  "email": "azuciao@gmail.com",
+  "homepage": "https://github.com/azu/gitbook-plugin-js-console",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/gitbook-plugin-js-console/issues"
+  },
+  "files": [
+    "gitbook-plugin-js-console.js",
+    "src/",
+    "assets/"
+  ],
+  "version": "1.0.0",
+  "description": "GitBook plugin that provide interactive JavaScript console",
+  "main": "./gitbook-plugin-js-console.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production webpack -p",
+    "watch": "webpack -w",
+    "prepublish": "npm run --if-present build"
+  },
+  "keywords": [
+    "gitbook",
+    "plugin",
+    "gitbook-plugin"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-jsdoc-to-assert": "^2.0.1",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.11.6",
+    "brfs": "^1.4.3",
+    "json-loader": "^0.5.4",
+    "mocha": "^2.5.3",
+    "power-assert": "^1.4.1",
+    "transform-loader": "^0.2.3",
+    "webpack": "^2.1.0-beta.20"
+  },
+  "dependencies": {
+    "codemirror-console-ui": "^1.0.1"
+  }
+}
