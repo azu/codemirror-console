@@ -5,7 +5,7 @@ module.exports = {
     ],
     devtool: process.env.WEBPACK_DEVTOOL || "source-map",
     output: {
-        path: path.join(__dirname, "dist"),
+        path: path.join(__dirname, "assets"),
         filename: "console-ui.js"
     },
     module: {
@@ -15,6 +15,10 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: "transform?brfs"
+            },
+            {
+                test: /\.css$/,
+                loader: "style!css"
             },
             {
                 test: /\.json$/,

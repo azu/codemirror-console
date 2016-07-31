@@ -8,9 +8,12 @@ module.exports = {
         ]
     },
     blocks: {
-        "console": {
+        console: {
             process: function(block) {
-                return '<button class="gitbook-plugin-js-console">コンソールを開く</button>';
+                if (this.output.name !== "website") {
+                    return '';
+                }
+                return '<a class="gitbook-plugin-js-console" aria-hidden="true"></a>';
             }
         }
     }

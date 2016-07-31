@@ -1,8 +1,6 @@
 # Example
 
-`{{console}}` example
-
-{{console}}
+{% console %}{% endconsole %}
 ```js
 console.log(1);
 ```
