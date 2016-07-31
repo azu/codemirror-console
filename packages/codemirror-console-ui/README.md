@@ -20,6 +20,11 @@ Please use with browserify + [brfs](https://github.com/substack/brfs "brfs") or 
 browserify -t brfs app.js
 ```
 
+And import codemirror css like this:
+
+```
+<link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
+```
 ## How to custom Localization?
 
 If you want to custom locale, then please add translated text to [components/localization.js](components/localization.js).
