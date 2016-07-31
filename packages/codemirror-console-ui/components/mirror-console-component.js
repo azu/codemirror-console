@@ -14,7 +14,16 @@ var userContext = {};
 function intendMirrorConsole(element, defaultsText) {
     var mirror = new MirrorConsole();
     var codeMirror = mirror.editor;
+    var extraKeys = {
+        "Cmd-Enter": function() {
+            runCode();
+        },
+        "Ctrl-Enter": function() {
+            runCode();
+        }
+    };
     codeMirror.setOption("lineNumbers", true);
+    codeMirror.setOption("extraKeys", extraKeys);
     mirror.setText(defaultsText || "");
     mirror.textareaHolder.className = "mirror-console-wrapper";
     var html = fs.readFileSync(__dirname + "/mirror-console-component.hbs", "utf8");
