@@ -64,7 +64,7 @@ function intendMirrorConsole(element, defaultsText) {
                 consoleMock.error(error);
                 return;
             }
-            if (result) {
+            if (result !== undefined) {
                 printConsole([result], "mirror-console-log-row mirror-console-log-return");
             }
         });
