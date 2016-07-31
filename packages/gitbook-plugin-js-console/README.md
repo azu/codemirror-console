@@ -2,6 +2,10 @@
 
 GitBook plugin that provide interactive JavaScript console.
 
+![ss](https://monosnap.com/file/nqF69gxFUpkJXWzl4Vt06kfZqoVpbC.png)
+
+- [azu/codemirror-console-ui: UI Components of codemirror-console.](https://github.com/azu/codemirror-console-ui)
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
