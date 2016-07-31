@@ -1,6 +1,6 @@
 # gitbook-plugin-js-console
 
-GitBook plugin that provide interactive JavaScript console
+GitBook plugin that provide interactive JavaScript console.
 
 ## Install
 
@@ -10,7 +10,18 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+put "js-console" to your `book.json`
+
+```json
+{
+  "gitbook": ">=3.0.0",
+  "plugins": [
+    "js-console"
+  ]
+}
+```
+
+See [example](./example/)
 
 ## Changelog
 
