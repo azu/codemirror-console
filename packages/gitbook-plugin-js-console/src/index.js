@@ -14,11 +14,14 @@
             var p = button.parentNode;
             var prevNode = p.previousElementSibling;
             var nextNode = p.nextElementSibling;
+            var nextNextNode = nextNode && nextNode.nextElementSibling;
             if (prevNode && prevNode.nodeName === "PRE") {
                 replaceCodeWithConsole(prevNode);
             }
-            if (nextNode && nextNode.nodeName === "PRE") {
-                replaceCodeWithConsole(nextNode);
+            // some plugin fallback
+            // for https://github.com/azu/gitbook-plugin-include-codeblock
+            if (nextNextNode && nextNextNode.nodeName === "PRE") {
+                replaceCodeWithConsole(nextNextNode);
             }
         }
     }
