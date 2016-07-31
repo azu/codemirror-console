@@ -34,6 +34,7 @@
 
 .mirror-console-log-normal::before {
   content: "▶";
+  color: #ddd;
   margin-right: 0.5em; }
 
 .mirror-console-log-error::before {
