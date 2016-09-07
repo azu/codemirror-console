@@ -3,7 +3,7 @@ var MirrorConsole = require("codemirror-console");
 var merge = require("lodash.merge");
 // https://github.com/kchapelier/in-browser-language
 var browserLanguage = require('in-browser-language');
-var userLang = browserLanguage.pick(['en', 'ja'], 'en');
+var userLang = browserLanguage.pick(['en', 'ja', 'es'], 'en');
 var localize = require("./localize");
 var localization = require("./localization");
 var newElement = require('./new-element');

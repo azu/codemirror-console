@@ -25,9 +25,13 @@ And import codemirror css like this:
 ```
 <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
 ```
+
 ## How to custom Localization?
 
-If you want to custom locale, then please add translated text to [components/localization.js](components/localization.js).
+If you want to custom locale, please add translated text to [components/localization.js](components/localization.js).
+
+1. Add translated text to [components/localization.js](components/localization.js)
+2. Add lang(like "en", "ja") to [components/mirror-console-component.js](components/mirror-console-component.js)
 
 ## Contributing
 
