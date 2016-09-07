@@ -33,6 +33,12 @@ If you want to custom locale, please add translated text to [components/localiza
 1. Add translated text to [components/localization.js](components/localization.js)
 2. Add lang(like "en", "ja") to [components/mirror-console-component.js](components/mirror-console-component.js)
 
+## UseCase
+
+- http://azu.github.io/promises-book/
+- https://asciidwango.github.io/js-primer/
+    - via GitBook plugin - [azu/gitbook-plugin-js-console](https://github.com/azu/gitbook-plugin-js-console "azu/gitbook-plugin-js-console: GitBook plugin that provide interactive JavaScript console")
+
 ## Contributing
 
 1. Fork it!
