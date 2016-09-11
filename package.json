@@ -13,7 +13,8 @@
     "url": "https://github.com/azu/codemirror-console.git"
   },
   "files": [
-    "lib/mirror-console.js"
+    "lib/",
+    "dest/"
   ],
   "main": "lib/mirror-console.js",
   "scripts": {
@@ -31,14 +32,14 @@
     "url": "https://github.com/azu/codemirror-console/issues"
   },
   "dependencies": {
-    "codemirror": "^4.2.0",
-    "context-eval": "0.0.2"
+    "codemirror": "^5.18.2",
+    "context-eval": "^0.1.0"
   },
   "devDependencies": {
-    "browserify": "^4.1.9",
-    "espowerify": "^0.7.1",
-    "mocha": "^1.20.1",
-    "power-assert": "^0.7.2",
-    "testem": "^0.6.16"
+    "browserify": "^13.1.0",
+    "espowerify": "^1.0.0",
+    "mocha": "^3.0.2",
+    "power-assert": "^1.4.1",
+    "testem": "^1.12.0"
   }
 }

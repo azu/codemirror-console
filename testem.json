@@ -10,5 +10,5 @@
     "before_tests": "browserify test/mirror-console-test.js -o browserified.js -d -t espowerify",
     "on_exit": "rm browserified.js",
     "launch_in_dev": ["chrome"],
-    "launch_in_ci": ["chrome", "firefox", "IE9"]
+    "launch_in_ci": ["chrome", "firefox"]
 }
