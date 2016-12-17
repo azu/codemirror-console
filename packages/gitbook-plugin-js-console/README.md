@@ -25,6 +25,13 @@ put "js-console" to your `book.json`
 }
 ```
 
+And add `<!-- js-console -->` or `class="gitbook-plugin-js-console"` node before/after of CodeBlock.
+
+    <!-- js-console -->
+    ```js
+    1 + 2;
+    ```
+
 See [example](./example/)
 
 ## Changelog
