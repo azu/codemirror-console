@@ -14,11 +14,11 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: "transform?brfs"
+                loader: "transform-loader?brfs"
             },
             {
                 test: /\.css$/,
-                loader: "style!css"
+                loader: "style-loader!css-loader"
             },
             {
                 test: /\.json$/,
@@ -27,7 +27,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel",
+                loader: "babel-loader",
                 query: {
                     cacheDirectory: true
                 }

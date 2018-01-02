@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "update": "npm rm gitbook-plugin-js-console && npm i",
     "build": "gitbook build",
     "start": "gitbook serve"
   },
