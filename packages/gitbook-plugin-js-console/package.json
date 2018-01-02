@@ -16,7 +16,7 @@
     "src/",
     "assets/"
   ],
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "GitBook plugin that provide interactive JavaScript console",
   "main": "./gitbook-plugin-js-console.js",
   "engines": {
