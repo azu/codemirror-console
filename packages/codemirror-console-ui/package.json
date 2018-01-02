@@ -1,31 +1,33 @@
 {
   "name": "codemirror-console-ui",
-  "description": "codemirror-console ui components",
   "version": "1.3.1",
+  "description": "codemirror-console ui components",
   "homepage": "https://github.com/azu/codemirror-console-ui/",
+  "bugs": {
+    "url": "https://github.com/azu/codemirror-console-ui/issues"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "main": "components/mirror-console-component.js",
+  "files":[
+    "components/"
+  ],
+  "style": "components/*.css",
+  "directories": {
+    "test": "test/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/azu/codemirror-console-ui.git"
   },
-  "main": "components/mirror-console-component.js",
   "scripts": {
     "build": "browserify -t brfs index.js -o app/bundle.js -d",
     "watch": "watchify -t brfs index.js -o app/bundle.js"
   },
-  "template": "components/*.hbs",
-  "style": "components/*.css",
   "browserify": {
     "transform": [
       "brfs"
     ]
-  },
-  "directories": {
-    "test": "test/"
-  },
-  "author": "azu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/azu/codemirror-console-ui/issues"
   },
   "dependencies": {
     "@azu/format-text": "^1.0.1",
@@ -39,5 +41,6 @@
     "brfs": "^1.2.0",
     "browserify": "^13.0.0",
     "watchify": "^3.7.0"
-  }
+  },
+  "template": "components/*.hbs"
 }

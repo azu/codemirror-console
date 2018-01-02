@@ -1,6 +1,7 @@
 "use strict";
 var MirrorConsole = require("codemirror-console");
 var merge = require("lodash.merge");
+var util = require("util");
 // https://github.com/kchapelier/in-browser-language
 var browserLanguage = require('in-browser-language');
 var userLang = browserLanguage.pick(['en', 'ja', 'es'], 'en');
@@ -11,6 +12,7 @@ var fs = require('fs');
 
 // context
 var userContext = {};
+
 function intendMirrorConsole(element, defaultsText) {
     var mirror = new MirrorConsole();
     var codeMirror = mirror.editor;
@@ -33,7 +35,13 @@ function intendMirrorConsole(element, defaultsText) {
     function printConsole(args, className) {
         var div = document.createElement("div");
         div.className = className;
-        div.appendChild(document.createTextNode(args.join(",")));
+        const outputs = args.map(function(arg) {
+            if (String(arg) === "[object Object]" || Array.isArray(arg)) {
+                return util.inspect(arg);
+            }
+            return arg;
+        });
+        div.appendChild(document.createTextNode(outputs.join(", ")));
         logArea.appendChild(div);
     }
 
@@ -57,7 +65,7 @@ function intendMirrorConsole(element, defaultsText) {
     };
 
     var runCode = function() {
-        var context = {console: consoleMock};
+        var context = { console: consoleMock };
         var runContext = merge(context, userContext);
         mirror.runInContext(runContext, function(error, result) {
             if (error) {
@@ -90,6 +98,7 @@ function intendMirrorConsole(element, defaultsText) {
 
     return mirror;
 }
+
 function attachToElement(element, defaultsText) {
     var parentNode = element.parentNode;
     var html = fs.readFileSync(__dirname + "/mirror-console-inject-button.hbs", "utf8");
@@ -106,6 +115,7 @@ function attachToElement(element, defaultsText) {
         parentNode.insertBefore(divNode, element.nextSibling);
     }
 }
+
 module.exports = attachToElement;
 module.exports.setUserContext = function(context) {
     userContext = context;

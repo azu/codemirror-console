@@ -6,28 +6,30 @@
     <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="components/mirror-console-compoenent.css">
     <style>
-        body {font-size : 16px;}
-        pre{border: 2px solid #ddd}
+        body {
+            font-size: 16px;
+        }
+
+        pre {
+            border: 2px solid #ddd
+        }
     </style>
 </head>
 <body>
 
 <div class="paragraph">
-<p>Example</p>
+    <p>Example</p>
 </div>
 <div class="listingblock executable">
-<div class="title">xhr-promise.js</div>
-<div class="content">
-<pre class="CodeRay"><code class="javascript language-javascript">
-console.log("log");
+    <div class="title">xhr-promise.js</div>
+    <div class="content">
+<pre class="CodeRay"><code class="javascript language-javascript">console.log("log");
 console.info("info");
 console.warn("warn");
 console.error("error");
-"result";
-</code></pre>
+"result";</code></pre>
+    </div>
 </div>
-</div>
-
 
 
 <div class="paragraph">
@@ -36,11 +38,13 @@ console.error("error");
 <div class="listingblock executable">
     <div class="title">xhr-promise.js</div>
     <div class="content">
-<pre class="CodeRay"><code class="javascript language-javascript"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+<pre class="CodeRay"><code class="javascript language-javascript"><span class="string"><span
+        class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
     <span class="keyword">function</span> <span class="function">getURL</span>(URL) {
     <span class="keyword">return</span> <span class="keyword">new</span> Promise(<span class="keyword">function</span> (resolve, reject) {
     <span class="keyword">var</span> req = <span class="keyword">new</span> XMLHttpRequest();
-    req.open(<span class="string"><span class="delimiter">'</span><span class="content">GET</span><span class="delimiter">'</span></span>, URL, <span class="predefined-constant">true</span>);
+    req.open(<span class="string"><span class="delimiter">'</span><span class="content">GET</span><span
+            class="delimiter">'</span></span>, URL, <span class="predefined-constant">true</span>);
     req.<span class="function">onload</span> = <span class="keyword">function</span> () {
     <span class="keyword">if</span> (req.status == <span class="integer">200</span>) {
     resolve(req.response);
@@ -55,7 +59,8 @@ console.error("error");
     });
     }
     <span class="comment">// 実行例</span>
-    <span class="keyword">var</span> URL = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://httpbin.org/get</span><span class="delimiter">&quot;</span></span>;
+    <span class="keyword">var</span> URL = <span class="string"><span class="delimiter">&quot;</span><span
+            class="content">http://httpbin.org/get</span><span class="delimiter">&quot;</span></span>;
     getURL(URL).then(<span class="keyword">function</span> <span class="function">onFulfilled</span>(value){
     console.log(value);
     }).<span class="keyword">catch</span>(console.error.bind(console));</code></pre>
