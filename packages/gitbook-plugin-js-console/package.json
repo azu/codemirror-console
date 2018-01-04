@@ -52,6 +52,6 @@
     "webpack": "^2.7.0"
   },
   "dependencies": {
-    "codemirror-console-ui": "^1.4.1"
+    "codemirror-console-ui": "^1.4.2"
   }
 }
