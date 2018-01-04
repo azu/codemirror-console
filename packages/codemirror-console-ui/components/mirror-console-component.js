@@ -39,7 +39,7 @@ function intendMirrorConsole(element, defaultsText) {
             if (String(arg) === "[object Object]" || Array.isArray(arg)) {
                 return util.inspect(arg);
             }
-            return arg;
+            return String(arg);
         });
         div.appendChild(document.createTextNode(outputs.join(", ")));
         logArea.appendChild(div);
