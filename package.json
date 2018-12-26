@@ -9,7 +9,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "website": "lerna run build --scope website"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,10 @@
     "url": "https://github.com/azu/codemirror-console/issues"
   },
   "homepage": "https://github.com/azu/codemirror-console",
-  "workspaces": [
-    "packages/*"
-  ]
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "website"
+    ]
+  }
 }

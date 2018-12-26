@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "gitbook build",
+    "start": "gitbook serve"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "dependencies": {
+    "gitbook-cli": "^2.3.0",
+    "gitbook-plugin-js-console": "file:.."
+  }
+}
