@@ -1,45 +1,28 @@
 {
-  "name": "codemirror-console",
-  "description": "Add execute the code function to CodeMirror.",
-  "keywords": [
-    "JavaScript",
-    "CodeMirror",
-    "browserify"
-  ],
+  "private": true,
+  "name": "codemirror-console-monorepo",
   "version": "1.0.0",
-  "homepage": "https://github.com/azu/codemirror-console/",
+  "description": "codemirror-console monorepo.",
+  "devDependencies": {
+    "lerna": "^3.8.0"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "test": "lerna run test"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/azu/codemirror-console.git"
+    "url": "git+https://github.com/azu/codemirror-console.git"
   },
-  "files": [
-    "lib/",
-    "dest/"
-  ],
-  "main": "lib/mirror-console.js",
-  "scripts": {
-    "build": "browserify index.js -o app.js",
-    "dest": "browserify -s MirrorConsole -e lib/mirror-console.js -o dest/mirror-console.js",
-    "watch": "watchify index.js -o app.js -d",
-    "test": "testem ci"
-  },
-  "directories": {
-    "test": "test/"
-  },
+  "keywords": [],
   "author": "azu",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/azu/codemirror-console/issues"
   },
-  "dependencies": {
-    "codemirror": "^5.18.2",
-    "context-eval": "^0.1.0"
-  },
-  "devDependencies": {
-    "browserify": "^13.1.0",
-    "espowerify": "^1.0.0",
-    "mocha": "^3.0.2",
-    "power-assert": "^1.4.1",
-    "testem": "^1.12.0"
-  }
+  "homepage": "https://github.com/azu/codemirror-console",
+  "workspaces": [
+    "packages/*"
+  ]
 }
