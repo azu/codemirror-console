@@ -99,20 +99,42 @@ function intendMirrorConsole(element, defaultsText) {
     return mirror;
 }
 
-function attachToElement(element, defaultsText) {
+var DefaultOptions = {
+    state: "closed",
+    scrollIntoView: true
+};
+
+/**
+ *
+ * @param {Element}element
+ * @param {string} defaultsText
+ * @param {{ state: "closed" | "open", scrollIntoView: boolean }} [options]
+ */
+function attachToElement(element, defaultsText, options) {
+    options = options || {};
+    var state = options.state || DefaultOptions.state;
+    var scrollIntoView = options.scrollIntoView !== undefined ? options.scrollIntoView : DefaultOptions.scrollIntoView;
     var parentNode = element.parentNode;
     var html = fs.readFileSync(__dirname + "/mirror-console-inject-button.hbs", "utf8");
     var divNode = newElement(html, localize(localization, userLang));
     divNode.className = "mirror-console-attach-button-wrapper";
-    divNode.querySelector(".mirror-console-run").addEventListener("click", function editAndRun() {
+
+    function enterEditAndRun() {
         var mirror = intendMirrorConsole(element, defaultsText);
-        mirror.textareaHolder.scrollIntoView(true);
+        if (scrollIntoView) {
+            mirror.textareaHolder.scrollIntoView(true);
+        }
         parentNode.removeChild(divNode);
-    });
+    }
+
+    divNode.querySelector(".mirror-console-run").addEventListener("click", enterEditAndRun);
     if (element.nextSibling === null) {
         parentNode.appendChild(divNode);
     } else {
         parentNode.insertBefore(divNode, element.nextSibling);
+    }
+    if (state === "open") {
+        enterEditAndRun();
     }
 }
 
