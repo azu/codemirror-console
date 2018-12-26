@@ -7,7 +7,6 @@
     require("./style.css");
     var consoleUI = require("codemirror-console-ui");
     var matchSelector = ".gitbook-plugin-js-console";
-    var matchCommentText = "js-console";
 
     function findComments(element) {
         var arr = [];
@@ -22,15 +21,21 @@
         return arr;
     }
 
-    function filterJSConsole(element) {
-        const text = element.textContent;
-        return text.trim() === matchCommentText;
+    function filterClosedJSConsole(element) {
+        var text = element.textContent;
+        var trimmedText = text.trim();
+        return trimmedText === "js-console" || trimmedText === "js-console:closed";
+    }
+
+    function filterOpenJSConsole(element) {
+        var text = element.textContent;
+        return text.trim() === "js-console:open";
     }
 
     function updateCodeBlocs() {
         var insertPoints = document.querySelectorAll(matchSelector);
-        var commentNodes = findComments(document).filter(filterJSConsole);
-        var matchNode = function(prevNode, nextNode, nextNextNode) {
+        var commentNodes = findComments(document);
+        var getCommentNextPreNode = function(prevNode, nextNode, nextNextNode) {
             if (prevNode && prevNode.nodeName === "PRE") {
                 return prevNode;
             }
@@ -47,26 +52,55 @@
         (function() {
             for (var i = 0; i < insertPoints.length; i++) {
                 var button = insertPoints[i];
+                console.log(button);
+                var isOpen = button.classList.contains("open");
                 var targetNode = button.parentNode;
                 var prevNode = targetNode.previousElementSibling;
                 var nextNode = targetNode.nextElementSibling;
                 var nextNextNode = nextNode && nextNode.nextElementSibling;
-                var replaceNode = matchNode(prevNode, nextNode, nextNextNode);
+                var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
                 if (replaceNode) {
-                    replaceCodeWithConsole(replaceNode);
+                    if (isOpen) {
+                        replaceCodeWithConsole(replaceNode, {
+                            state: "open"
+                        });
+                    } else {
+                        replaceCodeWithConsole(replaceNode, {
+                            state: "closed"
+                        });
+                    }
                 }
             }
         })();
         // <!-- js-console -->
         (function() {
-            for (var i = 0; i < commentNodes.length; i++) {
-                var targetNode = commentNodes[i];
+            var closedConsoleCommentNodes = commentNodes.filter(filterClosedJSConsole);
+            for (var i = 0; i < closedConsoleCommentNodes.length; i++) {
+                var targetNode = closedConsoleCommentNodes[i];
                 var prevNode = targetNode.previousElementSibling;
                 var nextNode = targetNode.nextElementSibling;
                 var nextNextNode = nextNode && nextNode.nextElementSibling;
-                var replaceNode = matchNode(prevNode, nextNode, nextNextNode);
+                var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
                 if (replaceNode) {
-                    replaceCodeWithConsole(replaceNode);
+                    replaceCodeWithConsole(replaceNode, {
+                        state: "closed"
+                    });
+                }
+            }
+        })();
+        // <!-- js-console:open -->
+        (function() {
+            var openConsoleCommentNodes = commentNodes.filter(filterOpenJSConsole);
+            for (var i = 0; i < openConsoleCommentNodes.length; i++) {
+                var targetNode = openConsoleCommentNodes[i];
+                var prevNode = targetNode.previousElementSibling;
+                var nextNode = targetNode.nextElementSibling;
+                var nextNextNode = nextNode && nextNode.nextElementSibling;
+                var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
+                if (replaceNode) {
+                    replaceCodeWithConsole(replaceNode, {
+                        state: "open"
+                    });
                 }
             }
         })();
@@ -75,13 +109,13 @@
     window.gitbook.events.bind("page.change", function() {
         updateCodeBlocs();
     });
-    function replaceCodeWithConsole(codeBlock) {
+
+    function replaceCodeWithConsole(codeBlock, options) {
         var codes = codeBlock.getElementsByTagName("code");
         if (!codes || codes.length === 0) {
             return;
         }
         var code = codes[0];
-        consoleUI(codeBlock, code.textContent);
+        consoleUI(codeBlock, code.textContent, options);
     }
-
 })();

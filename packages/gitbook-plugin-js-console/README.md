@@ -25,14 +25,21 @@ put "js-console" to your `book.json`
 }
 ```
 
-And add `<!-- js-console -->` or `class="gitbook-plugin-js-console"` node before/after of CodeBlock.
+Add `<!-- js-console -->` or `class="gitbook-plugin-js-console"` node before/after of CodeBlock.
 
     <!-- js-console -->
     ```js
     1 + 2;
     ```
 
-See [example](./example/)
+Add `<!-- js-console:open -->` and this console is opened by default.
+
+    <!-- js-console:open -->
+    ```js
+    1 + 2;
+    ```
+
+For more details, See [website](../../website/).
 
 ## Changelog
 
