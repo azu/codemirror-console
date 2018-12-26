@@ -2,8 +2,6 @@
 
 Web UI Components of [codemirror-console](https://github.com/azu/codemirror-console "codemirror-console").
 
-![img](http://monosnap.com/image/jeIGR8EHA2o0CaK0wfI4R3k7tuk4sN.png)
-
 ## Installation
 
 ``` sh
