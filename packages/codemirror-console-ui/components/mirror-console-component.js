@@ -35,7 +35,7 @@ function intendMirrorConsole(element, defaultsText) {
     function printConsole(args, className) {
         var div = document.createElement("div");
         div.className = className;
-        const outputs = args.map(function(arg) {
+        var outputs = args.map(function(arg) {
             if (String(arg) === "[object Object]" || Array.isArray(arg)) {
                 return util.inspect(arg);
             }

@@ -38,8 +38,8 @@
     "lodash.merge": "^4.3.3"
   },
   "devDependencies": {
-    "brfs": "^1.2.0",
-    "browserify": "^13.0.0",
+    "brfs": "^2.0.1",
+    "browserify": "^16.2.3",
     "watchify": "^3.7.0"
   },
   "template": "components/*.hbs"
