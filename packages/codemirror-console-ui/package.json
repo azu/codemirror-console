@@ -1,0 +1,46 @@
+{
+  "name": "codemirror-console-ui",
+  "version": "1.4.2",
+  "description": "codemirror-console ui components",
+  "homepage": "https://github.com/azu/codemirror-console-ui/",
+  "bugs": {
+    "url": "https://github.com/azu/codemirror-console-ui/issues"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "main": "components/mirror-console-component.js",
+  "files": [
+    "components/"
+  ],
+  "style": "components/*.css",
+  "directories": {
+    "test": "test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/codemirror-console-ui.git"
+  },
+  "scripts": {
+    "build": "browserify -t brfs index.js -o app/bundle.js -d",
+    "watch": "watchify -t brfs index.js -o app/bundle.js"
+  },
+  "browserify": {
+    "transform": [
+      "brfs"
+    ]
+  },
+  "dependencies": {
+    "@azu/format-text": "^1.0.1",
+    "codemirror": "^5.13.2",
+    "codemirror-console": "^1.0.0",
+    "domify": "^1.4.0",
+    "in-browser-language": "^1.0.2",
+    "lodash.merge": "^4.3.3"
+  },
+  "devDependencies": {
+    "brfs": "^2.0.1",
+    "browserify": "^16.2.3",
+    "watchify": "^3.7.0"
+  },
+  "template": "components/*.hbs"
+}
