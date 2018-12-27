@@ -2,8 +2,6 @@
 "use strict";
 
 (function() {
-    require("codemirror-console-ui/components/mirror-console-compoenent.css");
-    require("codemirror/lib/codemirror.css");
     require("./style.css");
     var consoleUI = require("codemirror-console-ui");
     var matchSelector = ".gitbook-plugin-js-console";

@@ -34,3 +34,4 @@ npm-debug.log
 
 /packages/codemirror-console/dest/
 /website/_book/
+dist/

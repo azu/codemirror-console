@@ -8,7 +8,8 @@ var userLang = browserLanguage.pick(['en', 'ja', 'es'], 'en');
 var localize = require("./localize");
 var localization = require("./localization");
 var newElement = require('./new-element');
-
+require("./mirror-console-compoenent.css");
+require("codemirror/lib/codemirror.css");
 // context
 var userContext = {};
 

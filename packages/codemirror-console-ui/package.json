@@ -8,9 +8,11 @@
   },
   "license": "MIT",
   "author": "azu",
-  "main": "components/mirror-console-component.js",
+  "main": "dist/mirror-console-component.js",
+  "source": "components/mirror-console-component.js",
   "files": [
-    "components/"
+    "components/",
+    "dist/"
   ],
   "directories": {
     "test": "test/"
@@ -20,13 +22,9 @@
     "url": "https://github.com/azu/codemirror-console-ui.git"
   },
   "scripts": {
-    "build": "browserify -t brfs index.js -o app/bundle.js -d",
-    "watch": "watchify -t brfs index.js -o app/bundle.js"
-  },
-  "browserify": {
-    "transform": [
-      "brfs"
-    ]
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development -w",
+    "prepublish": "npm run --if-present build"
   },
   "dependencies": {
     "@azu/format-text": "^1.0.1",
@@ -37,8 +35,16 @@
     "lodash.merge": "^4.3.3"
   },
   "devDependencies": {
-    "brfs": "^2.0.1",
-    "browserify": "^16.2.3",
-    "watchify": "^3.7.0"
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^2.1.0",
+    "json-loader": "^0.5.7",
+    "raw-loader": "^1.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
   }
 }
