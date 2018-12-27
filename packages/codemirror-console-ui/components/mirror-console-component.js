@@ -8,7 +8,6 @@ var userLang = browserLanguage.pick(['en', 'ja', 'es'], 'en');
 var localize = require("./localize");
 var localization = require("./localization");
 var newElement = require('./new-element');
-var fs = require('fs');
 
 // context
 var userContext = {};
@@ -28,7 +27,7 @@ function intendMirrorConsole(element, defaultsText) {
     codeMirror.setOption("extraKeys", extraKeys);
     mirror.setText(defaultsText || "");
     mirror.textareaHolder.className = "mirror-console-wrapper";
-    var html = fs.readFileSync(__dirname + "/mirror-console-component.hbs", "utf8");
+    var html = require("./mirror-console-component.hbs");
     var node = newElement(html, localize(localization, userLang));
     var logArea = node.querySelector(".mirror-console-log");
 
@@ -115,7 +114,7 @@ function attachToElement(element, defaultsText, options) {
     var state = options.state || DefaultOptions.state;
     var scrollIntoView = options.scrollIntoView !== undefined ? options.scrollIntoView : DefaultOptions.scrollIntoView;
     var parentNode = element.parentNode;
-    var html = fs.readFileSync(__dirname + "/mirror-console-inject-button.hbs", "utf8");
+    var html = require("./mirror-console-inject-button.hbs");
     var divNode = newElement(html, localize(localization, userLang));
     divNode.className = "mirror-console-attach-button-wrapper";
 

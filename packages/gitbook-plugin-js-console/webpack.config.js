@@ -9,28 +9,26 @@ module.exports = {
         filename: "console-ui.js"
     },
     module: {
-        // to avoid warning by power-assert-formatter
-        exprContextCritical: false,
-        loaders: [
+        rules: [
             {
-                test: /\.js$/,
-                loader: "transform-loader?brfs"
+                test: /\.hbs$/,
+                use: ["raw-loader"]
             },
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader"
-            },
-            {
-                test: /\.json$/,
-                loader: "json-loader"
+                use: ["style-loader", "css-loader"]
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader",
-                query: {
-                    cacheDirectory: true
-                }
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            cacheDirectory: true
+                        }
+                    }
+                ]
             }
         ]
     }

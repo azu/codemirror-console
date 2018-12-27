@@ -12,7 +12,6 @@
   "files": [
     "components/"
   ],
-  "style": "components/*.css",
   "directories": {
     "test": "test/"
   },
@@ -41,6 +40,5 @@
     "brfs": "^2.0.1",
     "browserify": "^16.2.3",
     "watchify": "^3.7.0"
-  },
-  "template": "components/*.hbs"
+  }
 }
