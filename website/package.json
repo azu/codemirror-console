@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "website",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "prebuild": "install-local ../packages/gitbook-plugin-js-console",
     "build": "gitbook build",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "gitbook-cli": "^2.3.0",
-    "gitbook-plugin-js-console": "^1.4.2"
+    "gitbook-plugin-js-console": "^2.0.0"
   },
   "devDependencies": {
     "install-local": "^0.6.2"

@@ -16,7 +16,7 @@
     "src/",
     "assets/"
   ],
-  "version": "1.4.2",
+  "version": "2.0.0",
   "description": "GitBook plugin that provide interactive JavaScript console",
   "main": "./gitbook-plugin-js-console.js",
   "engines": {
@@ -50,6 +50,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "codemirror-console-ui": "^1.4.2"
+    "codemirror-console-ui": "^2.0.0"
   }
 }
