@@ -6,7 +6,7 @@ codemirror-console provide Web Console UI for JavaScript.
 
 ## Features
 
-- Eval code and See the result
+- Eval code and Show the result
 - Provide Web Console UI that is similar with Browser's developer tools
 - Editor([CodeMirror](https://codemirror.net/))
 
@@ -22,6 +22,21 @@ codemirror-console provide Web Console UI for JavaScript.
     - UI components
 - [gitbook-plugin-js-console](./packages/gitbook-plugin-js-console)
     - UI components and directive for [gitbook](https://github.com/GitbookIO/gitbook)
+
+## UseCase
+
+We aim to develop these libraries for web book.
+
+Interactive Web Console help you to learn JavaScript Language.
+
+- [jsprimer.net](https://jsprimer.net/ "この書籍について · JavaScriptの入門書 #jsprimer")
+    - Source: [asciidwango/js-primer](https://github.com/asciidwango/js-primer "asciidwango/js-primer: JavaScriptの入門書")
+- [JavaScript Promiseの本](http://azu.github.io/promises-book/ "JavaScript Promiseの本")
+    - Source: [azu/promises-book](https://github.com/azu/promises-book/ "azu/promises-book: JavaScript Promiseの本")
+
+If you have used this library, please add it to the "UseCase".
+
+Welcome to Pull Request!
 
 ## Tests
 
