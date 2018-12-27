@@ -26,8 +26,8 @@
     "test": "test"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack -p",
-    "watch": "webpack -w",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development -w",
     "prepublish": "npm run --if-present build"
   },
   "keywords": [
@@ -36,20 +36,18 @@
     "gitbook-plugin"
   ],
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^6.4.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-jsdoc-to-assert": "^2.0.1",
-    "babel-preset-power-assert": "^1.0.0",
-    "babel-register": "^6.26.0",
-    "brfs": "^1.4.3",
-    "css-loader": "^0.23.1",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^2.1.0",
     "json-loader": "^0.5.7",
-    "mocha": "^2.5.3",
-    "power-assert": "^1.4.4",
-    "style-loader": "^0.13.2",
-    "transform-loader": "^0.2.4",
-    "webpack": "^2.7.0"
+    "mocha": "^5.2.0",
+    "raw-loader": "^1.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "codemirror-console-ui": "^1.4.2"

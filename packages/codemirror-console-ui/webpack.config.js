@@ -1,12 +1,12 @@
 const path = require("path");
 module.exports = {
-    entry: [
-        "./src/index.js"
-    ],
+    entry: {
+        "mirror-console-component": "./components/mirror-console-component.js"
+    },
     devtool: process.env.WEBPACK_DEVTOOL || "source-map",
     output: {
-        path: path.join(__dirname, "assets"),
-        filename: "console-ui.js"
+        path: path.join(__dirname, "dist"),
+        filename: "[name].js"
     },
     module: {
         rules: [

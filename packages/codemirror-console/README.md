@@ -10,8 +10,7 @@ This library could execute CodeMirror editor's code.
 npm install codemirror-console
 ```
 
-Recommend use with [browserify](https://github.com/substack/node-browserify "browserify").
-
+If you want to use it as UI library, please use [codemirror-console-ui](../codemirror-console-ui/) instead of it.
 
 ## Usage
 

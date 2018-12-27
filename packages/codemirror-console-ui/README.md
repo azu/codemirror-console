@@ -1,6 +1,6 @@
 # codemirror-console-ui
 
-Web UI Components of [codemirror-console](https://github.com/azu/codemirror-console "codemirror-console").
+Web UI Components of [codemirror-console](../codemirror-console).
 
 ## Installation
 
@@ -10,18 +10,13 @@ npm install codemirror-console-ui
 
 ## Usage
 
-See [reusable components - substack/browserify-handbook](https://github.com/substack/browserify-handbook#reusable-components " reusable components")
-
-Please use with browserify + [brfs](https://github.com/substack/brfs "brfs") or webpack.
-
-```
-browserify -t brfs app.js
-```
-
-And import codemirror css like this:
-
-```
-<link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
+```js
+import { attachToElement } from "codemirror-console-ui" 
+const codeBlock = document.querySelector("code");
+attachToElement(codeBlock, "default text", {
+   state: "open",
+   scrollIntoView: true
+});
 ```
 
 ## How to custom Localization?
