@@ -10,7 +10,8 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "test": "lerna run test",
-    "website": "lerna run build --scope website"
+    "website": "lerna run build --scope website",
+    "publish": "lerna publish --conventional-commits"
   },
   "repository": {
     "type": "git",
