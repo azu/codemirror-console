@@ -16,9 +16,9 @@
 1 + 2;
 ```
 
-`<!-- js-console:close -->`
+`<!-- js-console:closed -->`
 
-<!-- js-console:close -->
+<!-- js-console:closed -->
 ```js
 1 + 2;
 ```
