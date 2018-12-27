@@ -16,6 +16,8 @@ codemirror-console provide Web Console UI for JavaScript.
 
 ## Packages
 
+If you want to get Web Console UI, use [codemirror-console-ui](./packages/codemirror-console-ui).
+
 - [codemirror-console](./packages/codemirror-console)
     - Core library that wrap [CodeMirror](https://codemirror.net/)
 - [codemirror-console-ui](./packages/codemirror-console-ui)
