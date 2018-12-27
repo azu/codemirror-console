@@ -1,14 +1,14 @@
 {
-  "private": true,
   "name": "website",
   "version": "2.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": "azu",
   "scripts": {
     "prebuild": "install-local ../packages/gitbook-plugin-js-console",
     "build": "gitbook build",
     "start": "gitbook serve"
   },
-  "author": "azu",
-  "license": "MIT",
   "dependencies": {
     "gitbook-cli": "^2.3.0",
     "gitbook-plugin-js-console": "^2.0.0"

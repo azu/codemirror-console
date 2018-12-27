@@ -6,25 +6,24 @@
   "bugs": {
     "url": "https://github.com/azu/codemirror-console-ui/issues"
   },
-  "license": "MIT",
-  "author": "azu",
-  "main": "dist/mirror-console-component.js",
-  "source": "components/mirror-console-component.js",
-  "files": [
-    "components/",
-    "dist/"
-  ],
-  "directories": {
-    "test": "test/"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/azu/codemirror-console-ui.git"
   },
+  "license": "MIT",
+  "author": "azu",
+  "files": [
+    "components/",
+    "dist/"
+  ],
+  "main": "dist/mirror-console-component.js",
+  "directories": {
+    "test": "test/"
+  },
   "scripts": {
     "build": "webpack --mode production",
-    "watch": "webpack --mode development -w",
-    "prepublish": "npm run --if-present build"
+    "prepublish": "npm run --if-present build",
+    "watch": "webpack --mode development -w"
   },
   "dependencies": {
     "@azu/format-text": "^1.0.1",
@@ -46,5 +45,6 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
-  }
+  },
+  "source": "components/mirror-console-component.js"
 }

@@ -3,11 +3,11 @@ var MirrorConsole = require("codemirror-console");
 var merge = require("lodash.merge");
 var util = require("util");
 // https://github.com/kchapelier/in-browser-language
-var browserLanguage = require('in-browser-language');
-var userLang = browserLanguage.pick(['en', 'ja', 'es'], 'en');
+var browserLanguage = require("in-browser-language");
+var userLang = browserLanguage.pick(["en", "ja", "es"], "en");
 var localize = require("./localize");
 var localization = require("./localization");
-var newElement = require('./new-element');
+var newElement = require("./new-element");
 require("./mirror-console-compoenent.css");
 require("codemirror/lib/codemirror.css");
 // context
@@ -142,7 +142,4 @@ function setUserContext(context) {
     userContext = context;
 }
 
-export {
-    attachToElement,
-    setUserContext
-}
+export { attachToElement, setUserContext };
