@@ -1,7 +1,7 @@
 "use strict";
 var EvalContext = require("context-eval");
 var CodeMirror = require("codemirror");
-require('codemirror/mode/javascript/javascript');
+require("codemirror/mode/javascript/javascript");
 function MirrorConsole() {
     this.editor = this.createEditor();
 }

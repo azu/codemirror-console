@@ -1,34 +1,34 @@
 {
   "name": "codemirror-console",
+  "version": "2.0.0",
   "description": "Add execute the code function to CodeMirror.",
   "keywords": [
-    "JavaScript",
     "CodeMirror",
+    "JavaScript",
     "browserify"
   ],
-  "version": "2.0.0",
   "homepage": "https://github.com/azu/codemirror-console/",
+  "bugs": {
+    "url": "https://github.com/azu/codemirror-console/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/azu/codemirror-console.git"
   },
+  "license": "MIT",
+  "author": "azu",
   "files": [
     "lib/",
     "dest/"
   ],
   "main": "lib/mirror-console.js",
-  "scripts": {
-    "build": "browserify -s MirrorConsole -e lib/mirror-console.js -o dest/mirror-console.js",
-    "test": "testem ci",
-    "prepublish": "npm run build"
-  },
   "directories": {
     "test": "test/"
   },
-  "author": "azu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/azu/codemirror-console/issues"
+  "scripts": {
+    "build": "browserify -s MirrorConsole -e lib/mirror-console.js -o dest/mirror-console.js",
+    "prepublish": "npm run build",
+    "test": "testem ci"
   },
   "dependencies": {
     "codemirror": "^5.18.2",

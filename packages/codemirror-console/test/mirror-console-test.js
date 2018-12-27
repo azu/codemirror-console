@@ -3,7 +3,7 @@ var assert = require("power-assert");
 var MirrorConsole = require("../lib/mirror-console");
 describe("mirror-console", function() {
     var mirrorConsole;
-    var sandbox;// fixture area
+    var sandbox; // fixture area
     beforeEach(function() {
         mirrorConsole = new MirrorConsole();
         sandbox = document.createElement("div");
@@ -56,12 +56,9 @@ describe("mirror-console", function() {
         });
         context("when before swap", function() {
             it("has not `originalElement`", function() {
-                assert.throws(
-                    function() {
-                        mirrorConsole.destroy();
-                    },
-                    Error
-                );
+                assert.throws(function() {
+                    mirrorConsole.destroy();
+                }, Error);
             });
         });
         context("when swapped element", function() {
@@ -146,8 +143,7 @@ describe("mirror-console", function() {
                 };
                 mirrorConsole.swapWithElement(div);
                 mirrorConsole.setText("setTimeout(function(){ log('async'); }, 0);");
-                mirrorConsole.runInContext(context, function(error, result) {
-                });
+                mirrorConsole.runInContext(context, function(error, result) {});
             });
         });
     });

@@ -1,40 +1,39 @@
 {
   "name": "gitbook-plugin-js-console",
+  "version": "2.0.0",
+  "description": "GitBook plugin that provide interactive JavaScript console",
+  "keywords": [
+    "gitbook",
+    "gitbook-plugin",
+    "plugin"
+  ],
+  "homepage": "https://github.com/azu/gitbook-plugin-js-console",
+  "bugs": {
+    "url": "https://github.com/azu/gitbook-plugin-js-console/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/azu/gitbook-plugin-js-console.git"
   },
-  "author": "azu",
-  "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/gitbook-plugin-js-console",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/azu/gitbook-plugin-js-console/issues"
-  },
+  "author": "azu",
   "files": [
     "gitbook-plugin-js-console.js",
     "src/",
     "assets/"
   ],
-  "version": "2.0.0",
-  "description": "GitBook plugin that provide interactive JavaScript console",
   "main": "./gitbook-plugin-js-console.js",
-  "engines": {
-    "gitbook": "*"
-  },
   "directories": {
     "test": "test"
   },
   "scripts": {
     "build": "webpack --mode production",
-    "watch": "webpack --mode development -w",
-    "prepublish": "npm run --if-present build"
+    "prepublish": "npm run --if-present build",
+    "watch": "webpack --mode development -w"
   },
-  "keywords": [
-    "gitbook",
-    "plugin",
-    "gitbook-plugin"
-  ],
+  "dependencies": {
+    "codemirror-console-ui": "^2.0.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
@@ -49,7 +48,8 @@
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
   },
-  "dependencies": {
-    "codemirror-console-ui": "^2.0.0"
-  }
+  "engines": {
+    "gitbook": "*"
+  },
+  "email": "azuciao@gmail.com"
 }

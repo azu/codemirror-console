@@ -4,14 +4,18 @@
   "version": "1.0.0",
   "description": "codemirror-console monorepo.",
   "devDependencies": {
-    "lerna": "^3.8.0"
+    "husky": "^1.2.1",
+    "lerna": "^3.8.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "test": "lerna run test",
     "website": "lerna run build --scope website",
-    "publish": "lerna publish --conventional-commits"
+    "publish": "lerna publish --conventional-commits",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,22 @@
     "packages": [
       "packages/*",
       "website"
+    ]
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
     ]
   }
 }
