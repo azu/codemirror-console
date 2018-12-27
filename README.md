@@ -25,7 +25,7 @@ codemirror-console provide Web Console UI for JavaScript.
 
 ## UseCase
 
-We aim to develop these libraries for web book.
+We develop these libraries for web book.
 
 Interactive Web Console help you to learn JavaScript Language.
 
