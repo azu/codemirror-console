@@ -2,6 +2,8 @@
 
 codemirror-console provide Web Console UI for JavaScript.
 
+[![screenshot](./docs/screenshot.png)](https://codemirror-console.netlify.com/)
+
 ## Demo
 
 - <https://codemirror-console.netlify.com/>
@@ -9,8 +11,11 @@ codemirror-console provide Web Console UI for JavaScript.
 ## Packages
 
 - [codemirror-console](./packages/codemirror-console)
+    - Core library
 - [codemirror-console-ui](./packages/codemirror-console-ui)
+    - UI components
 - [gitbook-plugin-js-console](./packages/gitbook-plugin-js-console)
+    - UI components and directive for [gitbook](https://github.com/GitbookIO/gitbook)
 
 ## Tests
 
