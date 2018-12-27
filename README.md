@@ -38,12 +38,16 @@ If you have used this library, please add it to the "UseCase".
 
 Welcome to Pull Request!
 
-## Tests
+## Developments
 
-Run `yarn test`:
+This monorepo use [Yarn](http://yarnpkg.com/).
 
+    # Install and Prepare
     yarn install
     yarn bootstrap
+    # Buils all
+    yarn run build
+    # Run Tests
     yarn test
     
 ## Contributing
