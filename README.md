@@ -44,12 +44,17 @@ Welcome to Pull Request!
 
 This monorepo use [Yarn](http://yarnpkg.com/).
 
-    # Install and Prepare
+Installation
+
     yarn install
     yarn bootstrap
-    # Buils all
+
+Build all
+
     yarn run build
-    # Run Tests
+    
+Run Tests
+
     yarn test
     
 ## Contributing
