@@ -1,9 +1,8 @@
 // LICENSE : MIT
 "use strict";
-
+import { attachToElement } from "codemirror-console-ui/components/mirror-console-component.js";
 (function() {
     require("./style.css");
-    var consoleUI = require("codemirror-console-ui");
     var matchSelector = ".gitbook-plugin-js-console";
 
     function findComments(element) {
@@ -114,6 +113,6 @@
             return;
         }
         var code = codes[0];
-        consoleUI(codeBlock, code.textContent, options);
+        attachToElement(codeBlock, code.textContent, options);
     }
 })();

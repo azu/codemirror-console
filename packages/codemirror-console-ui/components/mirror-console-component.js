@@ -138,7 +138,11 @@ function attachToElement(element, defaultsText, options) {
     }
 }
 
-module.exports = attachToElement;
-module.exports.setUserContext = function(context) {
+function setUserContext(context) {
     userContext = context;
-};
+}
+
+export {
+    attachToElement,
+    setUserContext
+}
