@@ -96,7 +96,8 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
                 var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
                 if (replaceNode) {
                     replaceCodeWithConsole(replaceNode, {
-                        state: "open"
+                        state: "open",
+                        scrollIntoView: false
                     });
                 }
             }
