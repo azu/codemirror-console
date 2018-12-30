@@ -1,6 +1,6 @@
 {
   "name": "gitbook-plugin-js-console",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "GitBook plugin that provide interactive JavaScript console",
   "keywords": [
     "gitbook",
