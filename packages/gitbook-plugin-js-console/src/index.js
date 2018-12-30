@@ -58,11 +58,13 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
                 if (replaceNode) {
                     if (isOpen) {
                         replaceCodeWithConsole(replaceNode, {
-                            state: "open"
+                            state: "open",
+                            scrollIntoView: false
                         });
                     } else {
                         replaceCodeWithConsole(replaceNode, {
-                            state: "closed"
+                            state: "closed",
+                            scrollIntoView: false
                         });
                     }
                 }
@@ -79,7 +81,8 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
                 var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
                 if (replaceNode) {
                     replaceCodeWithConsole(replaceNode, {
-                        state: "closed"
+                        state: "closed",
+                        scrollIntoView: false
                     });
                 }
             }
