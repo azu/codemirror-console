@@ -49,7 +49,6 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
         (function() {
             for (var i = 0; i < insertPoints.length; i++) {
                 var button = insertPoints[i];
-                console.log(button);
                 var isOpen = button.classList.contains("open");
                 var targetNode = button.parentNode;
                 var prevNode = targetNode.previousElementSibling;
