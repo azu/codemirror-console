@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/azu/codemirror-console/compare/v2.0.3...v2.0.4) (2019-03-16)
+
+
+### Bug Fixes
+
+* **console-ui:** output's style should be white-space: pre; ([acaa522](https://github.com/azu/codemirror-console/commit/acaa522))
+
+
+
+
+
 ## [2.0.3](https://github.com/azu/codemirror-console/compare/v2.0.2...v2.0.3) (2018-12-30)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "gitbook-cli": "^2.3.0",
-    "gitbook-plugin-js-console": "^2.0.3"
+    "gitbook-plugin-js-console": "^2.0.4"
   },
   "devDependencies": {
     "install-local": "^0.6.2"
