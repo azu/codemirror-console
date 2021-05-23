@@ -14,6 +14,6 @@
     "honkit": "^3.6.20"
   },
   "devDependencies": {
-    "install-local": "^0.6.2"
+    "install-local": "^3.0.1"
   }
 }
