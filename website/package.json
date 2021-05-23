@@ -6,12 +6,12 @@
   "author": "azu",
   "scripts": {
     "prebuild": "install-local ../packages/gitbook-plugin-js-console",
-    "build": "gitbook build",
-    "start": "gitbook serve"
+    "build": "honkit build",
+    "start": "honkit serve"
   },
   "dependencies": {
-    "gitbook-cli": "^2.3.0",
-    "gitbook-plugin-js-console": "^2.0.5"
+    "gitbook-plugin-js-console": "^2.0.5",
+    "honkit": "^3.6.20"
   },
   "devDependencies": {
     "install-local": "^0.6.2"

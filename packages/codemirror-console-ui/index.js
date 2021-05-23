@@ -7,5 +7,5 @@ for (var i = 0; i < codeBlocks.length; i++) {
     if (!code) {
         continue;
     }
-    attachToElement(codeBlock, code.textContent);
+    attachToElement(codeBlock, <code className="b"></code>);
 }
