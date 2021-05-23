@@ -17,10 +17,10 @@ function intendMirrorConsole(element, defaultsText) {
     var mirror = new MirrorConsole();
     var codeMirror = mirror.editor;
     var extraKeys = {
-        "Cmd-Enter": function() {
+        "Cmd-Enter": function () {
             runCode();
         },
-        "Ctrl-Enter": function() {
+        "Ctrl-Enter": function () {
             runCode();
         }
     };
@@ -35,7 +35,7 @@ function intendMirrorConsole(element, defaultsText) {
     function printConsole(args, className) {
         var div = document.createElement("div");
         div.className = className;
-        var outputs = args.map(function(arg) {
+        var outputs = args.map(function (arg) {
             if (String(arg) === "[object Object]" || Array.isArray(arg)) {
                 return util.inspect(arg);
             }
@@ -46,28 +46,28 @@ function intendMirrorConsole(element, defaultsText) {
     }
 
     var consoleMock = {
-        log: function() {
+        log: function () {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-normal");
             console.log.apply(console, arguments);
         },
-        info: function() {
+        info: function () {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-info");
             console.info.apply(console, arguments);
         },
-        warn: function() {
+        warn: function () {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-warn");
             console.warn.apply(console, arguments);
         },
-        error: function() {
+        error: function () {
             printConsole(Array.prototype.slice.call(arguments), "mirror-console-log-row mirror-console-log-error");
             console.error.apply(console, arguments);
         }
     };
 
-    var runCode = function() {
+    var runCode = function () {
         var context = { console: consoleMock };
         var runContext = merge(context, userContext);
-        mirror.runInContext(runContext, function(error, result) {
+        mirror.runInContext(runContext, function (error, result) {
             if (error) {
                 consoleMock.error(error);
                 return;

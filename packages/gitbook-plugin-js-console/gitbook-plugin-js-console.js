@@ -7,7 +7,7 @@ module.exports = {
     },
     blocks: {
         console: {
-            process: function(block) {
+            process: function (block) {
                 if (this.output.name !== "website") {
                     return "";
                 }

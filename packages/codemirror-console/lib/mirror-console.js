@@ -5,24 +5,24 @@ require("codemirror/mode/javascript/javascript");
 function MirrorConsole() {
     this.editor = this.createEditor();
 }
-MirrorConsole.prototype.createEditor = function() {
+MirrorConsole.prototype.createEditor = function () {
     this.textareaHolder = document.createElement("div");
     this.textarea = document.createElement("textarea");
     this.textareaHolder.appendChild(this.textarea);
     return CodeMirror.fromTextArea(this.textarea);
 };
-MirrorConsole.prototype.setText = function(value) {
+MirrorConsole.prototype.setText = function (value) {
     this.editor.setValue(value);
 };
-MirrorConsole.prototype.getText = function(value) {
+MirrorConsole.prototype.getText = function (value) {
     return this.editor.getValue();
 };
-MirrorConsole.prototype.swapWithElement = function(element) {
+MirrorConsole.prototype.swapWithElement = function (element) {
     this.originalElemenet = element;
     element.parentNode.replaceChild(this.textareaHolder, element);
     this.editor.refresh();
 };
-MirrorConsole.prototype.destroy = function(element) {
+MirrorConsole.prototype.destroy = function (element) {
     if (this.originalElemenet == null) {
         throw new Error("Haven't `originalElement` : You have to call #swapWithElement before call this");
     }
@@ -36,7 +36,7 @@ MirrorConsole.prototype.destroy = function(element) {
     }
     Object.freeze(this);
 };
-MirrorConsole.prototype.runInContext = function(context, callback) {
+MirrorConsole.prototype.runInContext = function (context, callback) {
     if (this.evalContext) {
         this.evalContext.destroy();
     }

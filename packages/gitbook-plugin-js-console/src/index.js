@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { attachToElement } from "codemirror-console-ui/components/mirror-console-component.js";
-(function() {
+(function () {
     require("./style.css");
     var matchSelector = ".gitbook-plugin-js-console";
 
@@ -32,7 +32,7 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
     function updateCodeBlocs() {
         var insertPoints = document.querySelectorAll(matchSelector);
         var commentNodes = findComments(document);
-        var getCommentNextPreNode = function(prevNode, nextNode, nextNextNode) {
+        var getCommentNextPreNode = function (prevNode, nextNode, nextNextNode) {
             if (prevNode && prevNode.nodeName === "PRE") {
                 return prevNode;
             }
@@ -46,7 +46,7 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
             return null;
         };
         // .gitbook-plugin-js-console
-        (function() {
+        (function () {
             for (var i = 0; i < insertPoints.length; i++) {
                 var button = insertPoints[i];
                 var isOpen = button.classList.contains("open");
@@ -71,7 +71,7 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
             }
         })();
         // <!-- js-console -->
-        (function() {
+        (function () {
             var closedConsoleCommentNodes = commentNodes.filter(filterClosedJSConsole);
             for (var i = 0; i < closedConsoleCommentNodes.length; i++) {
                 var targetNode = closedConsoleCommentNodes[i];
@@ -88,7 +88,7 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
             }
         })();
         // <!-- js-console:open -->
-        (function() {
+        (function () {
             var openConsoleCommentNodes = commentNodes.filter(filterOpenJSConsole);
             for (var i = 0; i < openConsoleCommentNodes.length; i++) {
                 var targetNode = openConsoleCommentNodes[i];
@@ -106,7 +106,7 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
         })();
     }
 
-    window.gitbook.events.bind("page.change", function() {
+    window.gitbook.events.bind("page.change", function () {
         updateCodeBlocs();
     });
 
