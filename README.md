@@ -1,4 +1,4 @@
-# codemirror-console [![Build Status](https://travis-ci.org/azu/codemirror-console.svg?branch=master)](https://travis-ci.org/azu/codemirror-console)
+# codemirror-console [![Actions Status: test](https://github.com/azu/codemirror-console/workflows/test/badge.svg)](https://github.com/azu/codemirror-console/actions?query=workflow%3A"test")
 
 codemirror-console provide Web Console UI for JavaScript.
 
