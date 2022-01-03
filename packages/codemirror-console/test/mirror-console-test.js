@@ -192,5 +192,12 @@ describe("mirror-console", function () {
                     });
             });
         });
+        it("should return promise object when completion is promise", () => {
+            mirrorConsole.swapWithElement(div);
+            mirrorConsole.setText("new Promise((resolve) => resolve());");
+            return mirrorConsole.runInContext({}).then((result) => {
+                assert.strictEqual(result, undefined);
+            });
+        });
     });
 });

@@ -1,7 +1,21 @@
 // License: MIT
 // https://github.com/syumai/sandboxed-eval
-const createSrcDoc = ({ origin, senderId, receiverId, type }) =>
-    `<!doctype html>
+/**
+ *
+ * @param origin
+ * @param senderId
+ * @param receiverId
+ * @param {"module" | "script" | "AsyncFunction"} type
+ */
+const createSrcDoc = ({ origin, senderId, receiverId, type }) => {
+    // script does not require <script> because just use eval on contextWindow
+    if (type === "script") {
+        return `<!doctype html>
+<html lang="en">
+<body></body>
+</html>`;
+    }
+    return `<!doctype html>
 <html lang="en">
 <body>
 <script>
@@ -48,6 +62,7 @@ window.parent.postMessage({ id: senderId, ready: true }, origin);
 </script>
 </body>
 </html>`;
+};
 
 function genId() {
     return Array.from(crypto.getRandomValues(new Uint32Array(4)))
@@ -67,6 +82,7 @@ function contextEval(src, scope = {}, options = {}) {
     const senderId = genId();
     const receiverId = genId();
     return new Promise((resolve, reject) => {
+        // type: "module" | "AsyncFunction"
         const handleMessage = (event) => {
             if (event.source !== iframe.contentWindow) {
                 return;
@@ -87,11 +103,12 @@ function contextEval(src, scope = {}, options = {}) {
             window.removeEventListener("message", handleMessage);
         };
         window.addEventListener("message", handleMessage);
+        const executionType = options.type ? options.type : "script";
         iframe.srcdoc = createSrcDoc({
             origin: window.location.origin,
             senderId,
             receiverId,
-            type: options.type ? options.type : "script"
+            type: executionType
         });
         document.body.appendChild(iframe);
         // inject global
@@ -100,6 +117,15 @@ function contextEval(src, scope = {}, options = {}) {
         Object.keys(scope).forEach(function (key) {
             iframeWindow[key] = scope[key];
         });
+        // type: script just use eval
+        // does not use postMessage, because postMessage restrict transferable object
+        if (executionType === "script") {
+            try {
+                resolve(iframeWindow.eval(src));
+            } catch (error) {
+                reject(error);
+            }
+        }
     })
         .then((result) => {
             return {
