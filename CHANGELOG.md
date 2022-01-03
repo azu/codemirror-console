@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/azu/codemirror-console/compare/v3.0.0...v3.0.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* **gitbook-plugin-js-console:** fix comment parsing ([2a1a336](https://github.com/azu/codemirror-console/commit/2a1a3366d44591dc38f17f8822f08d13a3253ceb))
+
+
+
+
+
 # [3.0.0](https://github.com/azu/codemirror-console/compare/v2.0.5...v3.0.0) (2022-01-03)
 
 

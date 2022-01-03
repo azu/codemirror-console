@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/azu/codemirror-console/compare/v3.0.0...v3.0.1) (2022-01-03)
+
+**Note:** Version bump only for package codemirror-console
+
+
+
+
+
 # [3.0.0](https://github.com/azu/codemirror-console/compare/v2.0.5...v3.0.0) (2022-01-03)
 
 
