@@ -64,18 +64,17 @@ function intendMirrorConsole(element, defaultsText) {
         }
     };
 
-    var runCode = function () {
+    var runCode = async function () {
         var context = { console: consoleMock };
         var runContext = merge(context, userContext);
-        mirror.runInContext(runContext, function (error, result) {
-            if (error) {
-                consoleMock.error(error);
-                return;
-            }
+        try {
+            const result = await mirror.runInContext(runContext);
             if (result !== undefined) {
                 printConsole([result], "mirror-console-log-row mirror-console-log-return");
             }
-        });
+        } catch (error) {
+            consoleMock.error(error);
+        }
     };
 
     mirror.swapWithElement(element);

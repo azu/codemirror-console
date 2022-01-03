@@ -31,14 +31,11 @@
     "test": "testem ci"
   },
   "dependencies": {
-    "codemirror": "^5.18.2",
-    "context-eval": "^0.1.0"
+    "codemirror": "^5.18.2"
   },
   "devDependencies": {
     "browserify": "^16.2.3",
-    "espowerify": "^1.0.0",
     "mocha": "^8.4.0",
-    "power-assert": "^1.4.1",
-    "testem": "^2.14.0"
+    "testem": "^3.6.0"
   }
 }
