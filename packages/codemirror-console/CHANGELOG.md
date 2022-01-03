@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/azu/codemirror-console/compare/v3.0.1...v3.0.2) (2022-01-03)
+
+
+### Bug Fixes
+
+* **codemirror-console:** type: script support any object result ([9102a23](https://github.com/azu/codemirror-console/commit/9102a238728902d9d9850fcdad3885035c65a408))
+
+
+
+
+
 ## [3.0.1](https://github.com/azu/codemirror-console/compare/v3.0.0...v3.0.1) (2022-01-03)
 
 **Note:** Version bump only for package codemirror-console

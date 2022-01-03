@@ -1,6 +1,6 @@
 {
   "name": "codemirror-console",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Add execute the code function to CodeMirror.",
   "keywords": [
     "CodeMirror",

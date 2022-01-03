@@ -1,6 +1,6 @@
 {
   "name": "codemirror-console-ui",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "codemirror-console ui components",
   "homepage": "https://github.com/azu/codemirror-console-ui/",
   "bugs": {
@@ -28,7 +28,7 @@
   "dependencies": {
     "@azu/format-text": "^1.0.1",
     "codemirror": "^5.13.2",
-    "codemirror-console": "^3.0.1",
+    "codemirror-console": "^3.0.2",
     "domify": "^1.4.0",
     "in-browser-language": "^1.0.2",
     "lodash.merge": "^4.3.3"
