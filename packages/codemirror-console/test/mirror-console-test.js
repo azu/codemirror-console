@@ -1,5 +1,5 @@
 "use strict";
-var assert = require("power-assert");
+const assert = require("assert");
 var MirrorConsole = require("../lib/mirror-console");
 describe("mirror-console", function () {
     var mirrorConsole;
@@ -90,11 +90,20 @@ describe("mirror-console", function () {
             beforeEach(function () {
                 mirrorConsole.swapWithElement(div);
             });
-            it("should result null", function (done) {
-                mirrorConsole.runInContext({}, function (error, result) {
-                    assert(error == null);
-                    assert(result == null);
-                    done();
+            it("should result null", function () {
+                return mirrorConsole.runInContext({}).then((result) => {
+                    assert.strictEqual(result, undefined);
+                });
+            });
+        });
+        context("when has text", function () {
+            beforeEach(function () {
+                mirrorConsole.swapWithElement(div);
+            });
+            it("should return the result", function () {
+                mirrorConsole.setText("1+1");
+                return mirrorConsole.runInContext({}).then((result) => {
+                    assert.strictEqual(result, 2);
                 });
             });
         });
@@ -102,27 +111,25 @@ describe("mirror-console", function () {
             beforeEach(function () {
                 mirrorConsole.swapWithElement(div);
             });
-            it("should use context value", function (done) {
+            it("should use context value", function () {
                 mirrorConsole.setText("throw new Error('in error');");
-                mirrorConsole.runInContext({}, function (error, result) {
-                    assert(error.message === "in error");
-                    done();
+                return mirrorConsole.runInContext({}).catch((error) => {
+                    assert.strictEqual(error.message, "in error");
                 });
             });
         });
         context("when has context", function () {
-            it("should use context value", function (done) {
+            it("should use context value", function () {
                 var context = {
                     a: "outer"
                 };
                 mirrorConsole.swapWithElement(div);
                 mirrorConsole.setText("a;");
-                mirrorConsole.runInContext(context, function (error, result) {
-                    assert(result == "outer");
-                    done();
+                return mirrorConsole.runInContext(context).then((result) => {
+                    assert.strictEqual(result, "outer");
                 });
             });
-            it("should call context function", function (done) {
+            it("should call context function", function () {
                 var context = {
                     log: function (text) {
                         assert(text === "test");
@@ -130,20 +137,47 @@ describe("mirror-console", function () {
                 };
                 mirrorConsole.swapWithElement(div);
                 mirrorConsole.setText("log('test')");
-                mirrorConsole.runInContext(context, function (error, result) {
-                    done(error);
-                });
+                return mirrorConsole.runInContext(context);
             });
-            it("should handle async call", function (done) {
-                var context = {
+            it("should handle async call", async function () {
+                let shouldBeCalled = false;
+                const context = {
                     log: function (text) {
+                        shouldBeCalled = true;
                         assert(text === "async");
-                        done();
                     }
                 };
                 mirrorConsole.swapWithElement(div);
                 mirrorConsole.setText("setTimeout(function(){ log('async'); }, 0);");
-                mirrorConsole.runInContext(context, function (error, result) {});
+                await mirrorConsole.runInContext(context);
+                await new Promise((resolve) => setTimeout(resolve, 100));
+                assert.ok(shouldBeCalled);
+            });
+        });
+        context("when type:module", function () {
+            it("allow to execute Top-Level await", async function () {
+                let shouldBeCalled = false;
+                const context = {
+                    log: function (text) {
+                        shouldBeCalled = true;
+                        assert(text === "async");
+                    }
+                };
+                mirrorConsole.swapWithElement(div);
+                mirrorConsole.setText("await new Promise((resolve) => setTimeout(resolve, 0));log('async');");
+                await mirrorConsole.runInContext(context, {
+                    type: "module"
+                });
+                await new Promise((resolve) => setTimeout(resolve, 100));
+                assert.ok(shouldBeCalled);
+            });
+            it("always return undefined.[TODO] It is limitation", async function () {
+                mirrorConsole.swapWithElement(div);
+                mirrorConsole.setText("1;");
+                const result = await mirrorConsole.runInContext(context, {
+                    type: "module"
+                });
+                assert.strictEqual(result, undefined);
             });
         });
     });

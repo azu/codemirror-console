@@ -32,11 +32,20 @@ Add `<!-- js-console -->` or `class="gitbook-plugin-js-console"` node before/aft
     1 + 2;
     ```
 
-Add `<!-- js-console:open -->` and this console is opened by default.
+Add `<!-- js-console:{ "state": "open" } -->` and this console is opened by default.
 
-    <!-- js-console:open -->
+    <!-- js-console:{ "state": "open" } -->
     ```js
     1 + 2;
+    ```
+
+Add `<!-- js-console:{ "type": "module" } -->` and this console will execute the code as ECMAScript Module.
+
+:memo: Current limitation: ES Modules mode does not return value
+
+    <!-- js-console:{ "type": "module" } -->
+    ```js
+    await 1; // Module allow Top-Level await
     ```
 
 For more details, See [website](../../website/).

@@ -13,7 +13,14 @@ require("codemirror/lib/codemirror.css");
 // context
 var userContext = {};
 
-function intendMirrorConsole(element, defaultsText) {
+/**
+ *
+ * @param element
+ * @param defaultsText
+ * @param {{ type: "module" | "script" | "AsyncFunction" }} MirrorConsoleOptions
+ * @returns {MirrorConsole}
+ */
+function intendMirrorConsole(element, defaultsText, MirrorConsoleOptions = {}) {
     var mirror = new MirrorConsole();
     var codeMirror = mirror.editor;
     var extraKeys = {
@@ -64,18 +71,17 @@ function intendMirrorConsole(element, defaultsText) {
         }
     };
 
-    var runCode = function () {
+    var runCode = async function () {
         var context = { console: consoleMock };
         var runContext = merge(context, userContext);
-        mirror.runInContext(runContext, function (error, result) {
-            if (error) {
-                consoleMock.error(error);
-                return;
-            }
+        try {
+            const result = await mirror.runInContext(runContext, MirrorConsoleOptions);
             if (result !== undefined) {
                 printConsole([result], "mirror-console-log-row mirror-console-log-return");
             }
-        });
+        } catch (error) {
+            consoleMock.error(error);
+        }
     };
 
     mirror.swapWithElement(element);
@@ -93,7 +99,7 @@ function intendMirrorConsole(element, defaultsText) {
     });
     node.querySelector(".mirror-console-exit").addEventListener("click", function exitConsole() {
         mirror.destroy();
-        attachToElement(element, defaultsText);
+        attachToElement(element, defaultsText, MirrorConsoleOptions);
     });
 
     return mirror;
@@ -108,10 +114,9 @@ var DefaultOptions = {
  *
  * @param {Element}element
  * @param {string} defaultsText
- * @param {{ state: "closed" | "open", scrollIntoView: boolean }} [options]
+ * @param {{ state: "closed" | "open", scrollIntoView: boolean, type: "module" | "script" | "AsyncFunction" }} [options]
  */
-function attachToElement(element, defaultsText, options) {
-    options = options || {};
+function attachToElement(element, defaultsText, options = {}) {
     var state = options.state || DefaultOptions.state;
     var scrollIntoView = options.scrollIntoView !== undefined ? options.scrollIntoView : DefaultOptions.scrollIntoView;
     var parentNode = element.parentNode;
@@ -120,7 +125,9 @@ function attachToElement(element, defaultsText, options) {
     divNode.className = "mirror-console-attach-button-wrapper";
 
     function enterEditAndRun() {
-        var mirror = intendMirrorConsole(element, defaultsText);
+        var mirror = intendMirrorConsole(element, defaultsText, {
+            type: options.type
+        });
         if (scrollIntoView) {
             mirror.textareaHolder.scrollIntoView(true);
         }
