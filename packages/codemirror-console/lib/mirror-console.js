@@ -44,6 +44,9 @@ MirrorConsole.prototype.destroy = function () {
  * @returns {Promise<unknown>}
  */
 MirrorConsole.prototype.runInContext = async function (context, options = {}) {
+    if (this.removeContextEval) {
+        this.removeContextEval(); // remove previous context at first
+    }
     const jsCode = this.editor.getValue();
     const { remove, result } = await contextEval(jsCode, context, options);
     this.removeContextEval = remove;

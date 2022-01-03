@@ -16,16 +16,24 @@
 1 + 2;
 ```
 
-`<!-- js-console:closed -->`
+`<!-- js-console:{ "state": "closed" } -->`
 
-<!-- js-console:closed -->
+<!-- js-console:{ "state": "closed" } -->
 ```js
 1 + 2;
 ```
 
-`<!-- js-console:open -->`
+`<!-- js-console:{ "state": "open" }-->`
 
-<!-- js-console:open -->
+<!-- js-console:{ "state": "open" } -->
 ```js
 1 + 2;
+```
+
+`<!-- js-console:{ "type": "module" }-->`
+
+<!-- js-console:{ "type": "module" } -->
+```js
+const ret = await 1;
+console.log(ret);
 ```

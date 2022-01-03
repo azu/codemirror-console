@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { attachToElement } from "codemirror-console-ui/components/mirror-console-component.js";
+
 (function () {
     require("./style.css");
     var matchSelector = ".gitbook-plugin-js-console";
@@ -27,6 +28,42 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
     function filterOpenJSConsole(element) {
         var text = element.textContent;
         return text.trim() === "js-console:open";
+    }
+
+    /**
+     * <!-- js-console -->
+     * <!-- js-console:{ "type": "module"} -->
+     * @param {string} comment
+     * @returns {{ state: "open" | "closed", scrollIntoView: boolean, type: "module" | "script" | "AsyncFunction" }}
+     */
+    function parseComment(comment) {
+        const CONSOLE_METADATA = /js-console:({[^}]+})/;
+        const DEFAULT_VALUE = {
+            state: "closed",
+            scrollIntoView: false,
+            type: "script"
+        };
+        if (comment === "js-console") {
+            return DEFAULT_VALUE;
+        }
+        const optionString = comment.match(CONSOLE_METADATA);
+        if (!optionString) {
+            return DEFAULT_VALUE;
+        }
+        try {
+            const json = JSON.parse(optionString[1]);
+            return {
+                ...DEFAULT_VALUE,
+                ...json
+            };
+        } catch (error) {
+            throw new Error(`Can not parsed the metadata.
+
+js-console:{ ... } should be json string.
+
+Actual: ${optionString}
+`);
+        }
     }
 
     function updateCodeBlocs() {
@@ -72,37 +109,19 @@ import { attachToElement } from "codemirror-console-ui/components/mirror-console
         })();
         // <!-- js-console -->
         (function () {
+            const jsConsoleOptions = commentNodes.map((commentNode) => parseComment(commentNode.textContent.trim()));
+            jsConsoleOptions.forEach((jsConsoleOption, index) => {
+                var targetNode = commentNodes[index];
+                var prevNode = targetNode.previousElementSibling;
+                var nextNode = targetNode.nextElementSibling;
+                var nextNextNode = nextNode && nextNode.nextElementSibling;
+                var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
+                if (replaceNode) {
+                    replaceCodeWithConsole(replaceNode, jsConsoleOption);
+                }
+            });
             var closedConsoleCommentNodes = commentNodes.filter(filterClosedJSConsole);
-            for (var i = 0; i < closedConsoleCommentNodes.length; i++) {
-                var targetNode = closedConsoleCommentNodes[i];
-                var prevNode = targetNode.previousElementSibling;
-                var nextNode = targetNode.nextElementSibling;
-                var nextNextNode = nextNode && nextNode.nextElementSibling;
-                var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
-                if (replaceNode) {
-                    replaceCodeWithConsole(replaceNode, {
-                        state: "closed",
-                        scrollIntoView: false
-                    });
-                }
-            }
-        })();
-        // <!-- js-console:open -->
-        (function () {
-            var openConsoleCommentNodes = commentNodes.filter(filterOpenJSConsole);
-            for (var i = 0; i < openConsoleCommentNodes.length; i++) {
-                var targetNode = openConsoleCommentNodes[i];
-                var prevNode = targetNode.previousElementSibling;
-                var nextNode = targetNode.nextElementSibling;
-                var nextNextNode = nextNode && nextNode.nextElementSibling;
-                var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
-                if (replaceNode) {
-                    replaceCodeWithConsole(replaceNode, {
-                        state: "open",
-                        scrollIntoView: false
-                    });
-                }
-            }
+            for (var i = 0; i < closedConsoleCommentNodes.length; i++) {}
         })();
     }
 
