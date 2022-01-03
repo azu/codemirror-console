@@ -13,7 +13,12 @@
     "build": "lerna run build",
     "test": "lerna run test",
     "website": "lerna run build --scope website",
-    "publish": "lerna publish --conventional-commits",
+    "versionup": "lerna version --conventional-commits",
+    "versionup:patch": "lerna version patch --conventional-commits",
+    "versionup:minor": "lerna version minor --conventional-commits",
+    "versionup:major": "lerna version major --conventional-commits",
+    "release": "lerna publish from-package",
+    "release:canary": "lerna publish --canary",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks"
   },
