@@ -109,19 +109,26 @@ Actual: ${optionString}
         })();
         // <!-- js-console -->
         (function () {
-            const jsConsoleOptions = commentNodes.map((commentNode) => parseComment(commentNode.textContent.trim()));
-            jsConsoleOptions.forEach((jsConsoleOption, index) => {
-                var targetNode = commentNodes[index];
-                var prevNode = targetNode.previousElementSibling;
-                var nextNode = targetNode.nextElementSibling;
-                var nextNextNode = nextNode && nextNode.nextElementSibling;
-                var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
-                if (replaceNode) {
-                    replaceCodeWithConsole(replaceNode, jsConsoleOption);
-                }
-            });
-            var closedConsoleCommentNodes = commentNodes.filter(filterClosedJSConsole);
-            for (var i = 0; i < closedConsoleCommentNodes.length; i++) {}
+            commentNodes
+                .filter((commentNode) => {
+                    return commentNode.textContent.trim().startsWith("js-console");
+                })
+                .map((commentNode) => {
+                    return {
+                        commentNode,
+                        options: parseComment(commentNode.textContent.trim())
+                    };
+                })
+                .forEach(({ commentNode, options }) => {
+                    var targetNode = commentNode;
+                    var prevNode = targetNode.previousElementSibling;
+                    var nextNode = targetNode.nextElementSibling;
+                    var nextNextNode = nextNode && nextNode.nextElementSibling;
+                    var replaceNode = getCommentNextPreNode(prevNode, nextNode, nextNextNode);
+                    if (replaceNode) {
+                        replaceCodeWithConsole(replaceNode, options);
+                    }
+                });
         })();
     }
 
