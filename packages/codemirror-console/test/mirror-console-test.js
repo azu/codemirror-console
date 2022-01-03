@@ -179,6 +179,18 @@ describe("mirror-console", function () {
                 });
                 assert.strictEqual(result, undefined);
             });
+            it("should reject when parse error", async function () {
+                mirrorConsole.swapWithElement(div);
+                mirrorConsole.setText("AS+++++@@@@;");
+                return mirrorConsole
+                    .runInContext(context, {
+                        type: "module"
+                    })
+                    .then(() => assert.fail("should not resolve"))
+                    .catch((error) => {
+                        assert.ok(error instanceof Error);
+                    });
+            });
         });
     });
 });
