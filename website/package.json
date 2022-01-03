@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -10,7 +10,7 @@
     "start": "honkit serve"
   },
   "dependencies": {
-    "gitbook-plugin-js-console": "^2.0.5",
+    "gitbook-plugin-js-console": "^3.0.0",
     "honkit": "^3.6.20"
   },
   "devDependencies": {
