@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/azu/codemirror-console/compare/v3.0.2...v3.0.3) (2022-02-06)
+
+
+### Bug Fixes
+
+* **codemirror-console:** do not remove automatically ([c99722f](https://github.com/azu/codemirror-console/commit/c99722f738f7a7f655137910357b64dc2d23e075))
+
+
+
+
+
 ## [3.0.2](https://github.com/azu/codemirror-console/compare/v3.0.1...v3.0.2) (2022-01-03)
 
 

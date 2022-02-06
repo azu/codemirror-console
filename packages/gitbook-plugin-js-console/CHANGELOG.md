@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/azu/gitbook-plugin-js-console/compare/v3.0.2...v3.0.3) (2022-02-06)
+
+**Note:** Version bump only for package gitbook-plugin-js-console
+
+
+
+
+
 ## [3.0.2](https://github.com/azu/gitbook-plugin-js-console/compare/v3.0.1...v3.0.2) (2022-01-03)
 
 **Note:** Version bump only for package gitbook-plugin-js-console
