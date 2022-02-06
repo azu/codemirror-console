@@ -118,6 +118,44 @@ describe("mirror-console", function () {
                 });
             });
         });
+        context("scenario testing", function () {
+            beforeEach(function () {
+                mirrorConsole.swapWithElement(div);
+            });
+            it("success → success", async function () {
+                mirrorConsole.setText("1 + 1");
+                const result1 = await mirrorConsole.runInContext({});
+                assert.strictEqual(result1, 2);
+                mirrorConsole.setText(`"string" + "2"`);
+                const result2 = await mirrorConsole.runInContext({});
+                assert.strictEqual(result2, "string2");
+            });
+
+            it("success → error", async function () {
+                mirrorConsole.setText("1 + 1");
+                const result1 = await mirrorConsole.runInContext({});
+                assert.strictEqual(result1, 2);
+                mirrorConsole.setText("throw new Error('in error');");
+                const result2 = await mirrorConsole.runInContext({}).catch((error) => "ERROR");
+                assert.strictEqual(result2, "ERROR");
+            });
+            it("error → error", async function () {
+                mirrorConsole.setText("throw new Error('error 1');");
+                const result1 = await mirrorConsole.runInContext({}).catch((error) => error.message);
+                assert.strictEqual(result1, "error 1");
+                mirrorConsole.setText("throw new Error('error 2');");
+                const result2 = await mirrorConsole.runInContext({}).catch((error) => error.message);
+                assert.strictEqual(result2, "error 2");
+            });
+            it("error → success", async function () {
+                mirrorConsole.setText("throw new Error('in error');");
+                const result1 = await mirrorConsole.runInContext({}).catch((error) => "ERROR");
+                assert.strictEqual(result1, "ERROR");
+                mirrorConsole.setText("1 + 1");
+                const result2 = await mirrorConsole.runInContext({});
+                assert.strictEqual(result2, 2);
+            });
+        });
         context("when has context", function () {
             it("should use context value", function () {
                 var context = {
