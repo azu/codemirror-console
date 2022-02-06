@@ -1,11 +1,11 @@
 "use strict";
-var attachToElement = require("./components/mirror-console-component");
+var attachToElement = window.ConsoleUI.attachToElement;
 var codeBlocks = document.querySelectorAll(".executable");
-for (var i = 0; i < codeBlocks.length; i++) {
-    var codeBlock = codeBlocks[i];
-    var code = codeBlock.getElementsByTagName("code")[0];
+for (let i = 0; i < codeBlocks.length; i++) {
+    const codeBlock = codeBlocks[i];
+    const code = codeBlock.getElementsByTagName("code")[0];
     if (!code) {
         continue;
     }
-    attachToElement(codeBlock, <code className="b"></code>);
+    attachToElement(codeBlock, codeBlocks.textContent);
 }

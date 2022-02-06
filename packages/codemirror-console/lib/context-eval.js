@@ -126,20 +126,14 @@ function contextEval(src, scope = {}, options = {}) {
                 reject(error);
             }
         }
-    })
-        .then((result) => {
-            return {
-                remove: () => {
-                    document.body.removeChild(iframe);
-                },
-                result
-            };
-        })
-        .catch((error) => {
-            // automatic remove
-            document.body.removeChild(iframe);
-            return Promise.reject(error);
-        });
+    }).then((result) => {
+        return {
+            remove: () => {
+                document.body.removeChild(iframe);
+            },
+            result
+        };
+    });
 }
 
 module.exports.contextEval = contextEval;
