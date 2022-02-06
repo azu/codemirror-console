@@ -1,6 +1,6 @@
 "use strict";
 const assert = require("assert");
-var MirrorConsole = require("../lib/mirror-console");
+const MirrorConsole = require("../lib/mirror-console");
 describe("mirror-console", function () {
     var mirrorConsole;
     var sandbox; // fixture area
