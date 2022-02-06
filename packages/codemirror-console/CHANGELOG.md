@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/azu/codemirror-console/compare/v3.0.3...v3.0.4) (2022-02-06)
+
+
+### Bug Fixes
+
+* make remove iframe safety ([#20](https://github.com/azu/codemirror-console/issues/20)) ([67b0282](https://github.com/azu/codemirror-console/commit/67b0282eb43690cb0c116d80ff6d5d7215c3fc21))
+
+
+
+
+
 ## [3.0.3](https://github.com/azu/codemirror-console/compare/v3.0.2...v3.0.3) (2022-02-06)
 
 
