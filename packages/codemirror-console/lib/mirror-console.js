@@ -1,10 +1,14 @@
 "use strict";
-const { contextEval } = require("./context-eval");
 const CodeMirror = require("codemirror");
+const { createContextEval } = require("./context-eval");
 require("codemirror/mode/javascript/javascript");
 
 function MirrorConsole() {
     this.editor = this.createEditor();
+    /**
+     * @type {undefined | ReturnType<import("./context-eval").createContextEval> }
+     */
+    this.runningEvalContext = undefined;
 }
 
 MirrorConsole.prototype.createEditor = function () {
@@ -33,23 +37,22 @@ MirrorConsole.prototype.destroy = function () {
     this.textarea = null;
     this.textareaHolder = null;
     this.editor = null;
-    if (this.removeContextEval) {
-        this.removeContextEval();
+    if (this.runningEvalContext) {
+        this.runningEvalContext.remove();
     }
     Object.freeze(this);
 };
 /**
- * @param context
+ * @param {object} context
  * @param {{ type: "module" | "script" }} [options]
  * @returns {Promise<unknown>}
  */
 MirrorConsole.prototype.runInContext = async function (context, options = {}) {
-    if (this.removeContextEval) {
-        this.removeContextEval(); // remove previous context at first
+    if (this.runningEvalContext) {
+        this.runningEvalContext.remove(); // remove previous context at first
     }
     const jsCode = this.editor.getValue();
-    const { remove, result } = await contextEval(jsCode, context, options);
-    this.removeContextEval = remove;
-    return result;
+    this.runningEvalContext = createContextEval();
+    return this.runningEvalContext.run(jsCode, context, options);
 };
 module.exports = MirrorConsole;

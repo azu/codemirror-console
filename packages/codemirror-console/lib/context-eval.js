@@ -71,69 +71,72 @@ function genId() {
 }
 
 /**
- * @param {string} src
- * @param {object} [scope]
- * @param {{ type: "module" | "script" | "AsyncFunction" }} [options]
- * @returns {Promise<unknown>}
+ * @returns {{run: (function(string, Object=, {type: ("module"|"script"|"AsyncFunction")}=): Promise<*>), remove: remove}}
  */
-function contextEval(src, scope = {}, options = {}) {
+function createContextEval() {
     const iframe = document.createElement("iframe");
     iframe.setAttribute("style", "display: none;");
     const senderId = genId();
     const receiverId = genId();
-    return new Promise((resolve, reject) => {
-        // type: "module" | "AsyncFunction"
-        const handleMessage = (event) => {
-            if (event.source !== iframe.contentWindow) {
-                return;
-            }
-            const { id, result, error, ready } = event.data || {};
-            if (id !== senderId) {
-                return;
-            }
-            if (ready) {
-                iframe.contentWindow.postMessage({ id: receiverId, src }, "*");
-                return;
-            }
-            if (error) {
-                reject(new Error(error.message));
-            } else {
-                resolve(result);
-            }
-            window.removeEventListener("message", handleMessage);
-        };
-        window.addEventListener("message", handleMessage);
-        const executionType = options.type ? options.type : "script";
-        iframe.srcdoc = createSrcDoc({
-            origin: window.location.origin,
-            senderId,
-            receiverId,
-            type: executionType
-        });
-        document.body.appendChild(iframe);
-        // inject global
-        // avoid CloneError via postMessage
-        const iframeWindow = iframe.contentWindow;
-        Object.keys(scope).forEach(function (key) {
-            iframeWindow[key] = scope[key];
-        });
-        // type: script just use eval
-        // does not use postMessage, because postMessage restrict transferable object
-        if (executionType === "script") {
-            try {
-                resolve(iframeWindow.eval(src));
-            } catch (error) {
-                reject(error);
-            }
+    return {
+        remove: () => {
+            document.body.removeChild(iframe);
+        },
+        /**
+         * @param {string} src
+         * @param {object} [scope]
+         * @param {{ type: "module" | "script" | "AsyncFunction" }} [options]
+         * @returns {Promise<unknown>}
+         */
+        run: (src, scope = {}, options = {}) => {
+            return new Promise((resolve, reject) => {
+                // type: "module" | "AsyncFunction"
+                const handleMessage = (event) => {
+                    if (event.source !== iframe.contentWindow) {
+                        return;
+                    }
+                    const { id, result, error, ready } = event.data || {};
+                    if (id !== senderId) {
+                        return;
+                    }
+                    if (ready) {
+                        iframe.contentWindow.postMessage({ id: receiverId, src }, "*");
+                        return;
+                    }
+                    if (error) {
+                        reject(new Error(error.message));
+                    } else {
+                        resolve(result);
+                    }
+                    window.removeEventListener("message", handleMessage);
+                };
+                window.addEventListener("message", handleMessage);
+                const executionType = options.type ? options.type : "script";
+                iframe.srcdoc = createSrcDoc({
+                    origin: window.location.origin,
+                    senderId,
+                    receiverId,
+                    type: executionType
+                });
+                document.body.appendChild(iframe);
+                // inject global
+                // avoid CloneError via postMessage
+                const iframeWindow = iframe.contentWindow;
+                Object.keys(scope).forEach(function (key) {
+                    iframeWindow[key] = scope[key];
+                });
+                // type: script just use eval
+                // does not use postMessage, because postMessage restrict transferable object
+                if (executionType === "script") {
+                    try {
+                        resolve(iframeWindow.eval(src));
+                    } catch (error) {
+                        reject(error);
+                    }
+                }
+            });
         }
-    }).then((result) => {
-        return {
-            remove: () => {
-                document.body.removeChild(iframe);
-            },
-            result
-        };
-    });
+    };
 }
 
-module.exports.contextEval = contextEval;
+module.exports.createContextEval = createContextEval;
