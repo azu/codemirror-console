@@ -17,12 +17,12 @@ If you want to use it as UI library, please use [codemirror-console-ui](../codem
 open index.html
 
 ``` js
-var MirrorConsole = require("mirror-console");
-var content = document.querySelector(".content");
-var editor = new MirrorConsole();
+const MirrorConsole = require("codemirror-console");
+const content = document.querySelector(".content");
+const editor = new MirrorConsole();
 editor.setText(content.textContent);
 editor.swapWithElement(content); // insert editor
-var consoleMock = {
+const consoleMock = {
     log: function (arg) {
         function line(text) {
             var div = document.createElement("div");
