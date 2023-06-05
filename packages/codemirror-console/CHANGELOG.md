@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/azu/codemirror-console/compare/v3.0.4...v3.1.0) (2023-06-05)
+
+
+### Features
+
+* add data-mirror-console ([c8846ba](https://github.com/azu/codemirror-console/commit/c8846ba3ef76d81736e42fdacbd752d11504ce00))
+
+
+
+
+
 ## [3.0.4](https://github.com/azu/codemirror-console/compare/v3.0.3...v3.0.4) (2022-02-06)
 
 
