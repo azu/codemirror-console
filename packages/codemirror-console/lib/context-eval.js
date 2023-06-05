@@ -118,6 +118,7 @@ function createContextEval() {
                     receiverId,
                     type: executionType
                 });
+                iframe.dataset.mirrorConsole = executionType;
                 document.body.appendChild(iframe);
                 // inject global
                 // avoid CloneError via postMessage
