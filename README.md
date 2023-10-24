@@ -8,7 +8,7 @@ codemirror-console provide Web Console UI for JavaScript.
 
 - Eval code and Show the result
 - Provide Web Console UI that is similar with Browser's developer tools
-- Editor([CodeMirror](https://codemirror.net/))
+- Editor([CodeMirror 5](https://codemirror.net/5/))
 
 ## Demo
 
