@@ -46,7 +46,7 @@ function intendMirrorConsole(element, defaultsText, MirrorConsoleOptions = {}) {
             if (String(arg) === "[object Object]" || Array.isArray(arg)) {
                 return util.inspect(arg);
             }
-            if (arg.cause) {
+            if (arg && arg.cause) {
                 return String(arg) + " (Caused by: " + String(arg.cause) + ")";
             }
             return String(arg);
