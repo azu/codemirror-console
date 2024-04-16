@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "gitbook-plugin-js-console": "^3.1.0",
-    "honkit": "^3.6.20"
+    "honkit": "^5.1.4"
   },
   "devDependencies": {
     "install-local": "^3.0.1"
