@@ -46,6 +46,9 @@ function intendMirrorConsole(element, defaultsText, MirrorConsoleOptions = {}) {
             if (String(arg) === "[object Object]" || Array.isArray(arg)) {
                 return util.inspect(arg);
             }
+            if (arg && arg.cause) {
+                return String(arg) + " (Caused by: " + String(arg.cause) + ")";
+            }
             return String(arg);
         });
         div.appendChild(document.createTextNode(outputs.join(", ")));
