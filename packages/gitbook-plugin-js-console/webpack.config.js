@@ -8,6 +8,7 @@ module.exports = {
         path: path.join(__dirname, "assets"),
         filename: "console-ui.js"
     },
+    // target: "web",
     target: ["web", "es5"],
     plugins: [
         // Remove the `node:` prefix
