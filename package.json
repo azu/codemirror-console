@@ -9,7 +9,6 @@
     "prettier": "^3.2.5"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "test": "lerna run test",
     "website": "lerna run build --scope website",
