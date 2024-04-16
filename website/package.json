@@ -1,19 +1,19 @@
 {
-  "name": "website",
-  "version": "3.1.0",
-  "private": true,
-  "license": "MIT",
-  "author": "azu",
-  "scripts": {
-    "prebuild": "install-local ../packages/gitbook-plugin-js-console",
-    "build": "honkit build",
-    "start": "honkit serve"
-  },
-  "dependencies": {
-    "gitbook-plugin-js-console": "^3.1.0",
-    "honkit": "^5.1.4"
-  },
-  "devDependencies": {
-    "install-local": "^3.0.1"
-  }
+    "name": "website",
+    "version": "3.2.0",
+    "private": true,
+    "license": "MIT",
+    "author": "azu",
+    "scripts": {
+        "prebuild": "install-local ../packages/gitbook-plugin-js-console",
+        "build": "honkit build",
+        "start": "honkit serve"
+    },
+    "dependencies": {
+        "gitbook-plugin-js-console": "^3.2.0",
+        "honkit": "^5.1.4"
+    },
+    "devDependencies": {
+        "install-local": "^3.0.1"
+    }
 }

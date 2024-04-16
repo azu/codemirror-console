@@ -1,41 +1,41 @@
 {
-  "name": "codemirror-console",
-  "version": "3.1.0",
-  "description": "Add execute the code function to CodeMirror.",
-  "keywords": [
-    "CodeMirror",
-    "JavaScript",
-    "browserify"
-  ],
-  "homepage": "https://github.com/azu/codemirror-console/",
-  "bugs": {
-    "url": "https://github.com/azu/codemirror-console/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/azu/codemirror-console.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "files": [
-    "lib/",
-    "dest/"
-  ],
-  "main": "lib/mirror-console.js",
-  "directories": {
-    "test": "test/"
-  },
-  "scripts": {
-    "build": "browserify -s MirrorConsole -e lib/mirror-console.js -o dest/mirror-console.js",
-    "prepublish": "npm run build",
-    "test": "testem ci"
-  },
-  "dependencies": {
-    "codemirror": "^5.18.2"
-  },
-  "devDependencies": {
-    "browserify": "^17.0.0",
-    "mocha": "^10.4.0",
-    "testem": "^3.13.0"
-  }
+    "name": "codemirror-console",
+    "version": "3.2.0",
+    "description": "Add execute the code function to CodeMirror.",
+    "keywords": [
+        "CodeMirror",
+        "JavaScript",
+        "browserify"
+    ],
+    "homepage": "https://github.com/azu/codemirror-console/",
+    "bugs": {
+        "url": "https://github.com/azu/codemirror-console/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/azu/codemirror-console.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "files": [
+        "lib/",
+        "dest/"
+    ],
+    "main": "lib/mirror-console.js",
+    "directories": {
+        "test": "test/"
+    },
+    "scripts": {
+        "build": "browserify -s MirrorConsole -e lib/mirror-console.js -o dest/mirror-console.js",
+        "prepublish": "npm run build",
+        "test": "testem ci"
+    },
+    "dependencies": {
+        "codemirror": "^5.18.2"
+    },
+    "devDependencies": {
+        "browserify": "^17.0.0",
+        "mocha": "^10.4.0",
+        "testem": "^3.13.0"
+    }
 }
