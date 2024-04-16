@@ -2,5 +2,5 @@
   publish = "website/_book"
   command = "yarn bootstrap && yarn run website"
 [build.environment]
-  NODE_VERSION = "10"
+  NODE_VERSION = "20"
   YARN_VERSION = "1.12.3"
